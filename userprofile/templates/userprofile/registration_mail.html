@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Your Email</title>
+</head>
+<body>
+    <div style="padding:20px; font-family:sans-serif; border:1px solid #ddd;">
+        <h2>Hello {{ user.username }},</h2>
+        <p>You're almost done! Please click the button below to complete your registration:</p>
+        <p>
+            <a href="{{ confirm_link }}" style="padding:10px 15px; background-color:#4CAF50; color:white; text-decoration:none;">
+                Complete Registration
+            </a>
+        </p>
+        <p>If the button doesn't work, copy and paste the following link in your browser:</p>
+        <p>{{ confirm_link }}</p>
+        <br>
+        <p>Regards,<br>Your Website Team</p>
+    </div>
+</body>
+</html>

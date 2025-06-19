@@ -1,0 +1,50 @@
+<!-- userprofile/email_confirmation_failed.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmation Failed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #dc3545;
+            font-size: 2.5rem;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Email Confirmation Failed</h1>
+    <p>There was an issue with confirming your email. Please check the confirmation link or contact support.</p>
+    <a href="{% url 'login' %}" class="button">Try Again</a>
+</div>
+
+</body>
+</html>

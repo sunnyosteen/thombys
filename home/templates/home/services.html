@@ -1,0 +1,648 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thombys Palace Event Center</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style-liberty.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/css.gg/icons/all.css" rel="stylesheet" />
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap CSS (CDN) -->
+    <!-- Google Fonts (Optional, add if you want specific fonts) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/owl.carousel.js' %}"></script>
+  </body>
+</html>
+<body>
+  <!--/Header-->
+  <header id="site-header" class="fixed-top">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light stroke py-lg-0">
+        <h1>
+          <a class="navbar-brand pe-xl-5 pe-lg-4 d-flex flex-column align-items-center" href="{% url 'home' %}">
+            <span class="w3yellow text-center"> Thombys <span id="place" class="text-white">Place</span>
+            </span>
+            <span class="d-flex flex-column align-items-center mt-1" style="font-weight: 100;">
+              <i class="fas fa-hand-peace" style="font-size: 2rem; margin-bottom: 0.5rem; margin-top: 0.5rem;"></i>
+              <span class="event_center" style="font-size: 1rem; font-weight: normal; margin-top: 0.3rem; color: inherit !important;">
+                EVENT CENTER & <span class="w3yellow">LODGING</span>
+              </span>
+            </span>
+            
+          </a>
+        </h1>
+       <!-- THOMBYS PLACE & EVENT CENTE <iframe src="https://archive.org/embed/thombys7" width="640" height="480" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+          </div>R LOGO JS AND CSS -->
+<style>
+  /* Initial text-white color for Place */
+
+  /* Initial white color for event center text */
+.event_center {
+  color: white !important;
+  transition: color 0.3s ease;
+}
+
+/* Dark color when scrolled */
+.nav-scrolled .event_center {
+  color: #333 !important;
+}
+
+/* Keep LODGING yellow in both states */
+.event_center .w3yellow {
+  color: #ffc107 !important;
+}
+  #place {
+    color: white;
+    /* Default color is white */
+    transition: color 0.3s ease;
+    /* Smooth transition for color change */
+  }
+
+  /* Darker color when scrolled (applies only if not in dark mode) */
+  .scrolled {
+    color: #333 !important;
+    /* Dark color when scrolled */
+  }
+
+  /* Dark Mode */
+  [data-theme="dark"] #place {
+    color: white !important; /* Keep text white in dark mode, even when scrolled */
+  }
+</style>
+<style>
+  /* Initial styles */
+  .event_center {
+    font-size: 1rem;
+    font-weight: normal;
+    margin-top: 0.3rem;
+    color: white !important;
+    transition: color 0.3s ease;
+  }
+
+  /* Scrolled state - light mode */
+  .nav-scrolled:not([data-theme="dark"]) .event_center {
+    color: #333 !important;
+  }
+
+  /* Dark mode styles - all cases */
+  [data-theme="dark"] .event_center,
+  [data-theme="dark"] .nav-scrolled .event_center,
+  [data-theme="dark"] .event_center:hover {
+    color: white !important;
+  }
+
+  /* Light mode hover behavior */
+  :not([data-theme="dark"]) .event_center:hover {
+    color: inherit !important;
+  }
+
+  /* LODGING stays yellow always */
+  .event_center .w3yellow {
+    color: #ffc107 !important;
+  }
+</style>
+
+<script>
+  // JavaScript to change color when scrolling
+  window.addEventListener('scroll', function() {
+    var placeSpan = document.getElementById('place');
+    var isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark'; // Check if dark mode is active
+
+    // Check if the page has been scrolled down by a certain amount
+    if (window.scrollY > 50 && !isDarkMode) { // Only change color if not in dark mode
+      placeSpan.classList.add('scrolled'); // Add dark color in light mode
+    } else {
+      placeSpan.classList.remove('scrolled'); // Remove dark color when scrolled back up
+    }
+  });
+</script>
+
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+          <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'services' %}">Services</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#Pages" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Bookings <span class="fa fa-angle-down ms-1"></span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a class="dropdown-item pt-2"  href="{% url 'hall' %}">Hall Booking</a>
+                </li>
+                <li>
+                  <a class="dropdown-item"  href="{% url 'room' %}">Room Booking</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="email.html">Special Packages</a>
+                </li>
+                <!-- <li><a class="dropdown-item" href="elements.html">Elements</a></li><li><a class="dropdown-item" href="landing.html">Landing Page</a></li><li><a class="dropdown-item" href="error.html">Error Page</a></li> -->
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+          </ul>
+          <!--/search-right-->
+          <ul class="header-search me-lg-4">
+           <li class="search-right">
+  {% if user.is_authenticated %}
+    <a href="{% url 'userprofile:dashboard' %}" class="btn btn-style btn-primary search-btn d-flex align-items-center" title="Dashboard">
+      <i class="bi bi-person-circle me-2 fs-4" style="color: #FFD700;"></i>
+      <span class="fw-semibold text-truncate" style="max-width: 150px;">Hi, {{ user.username|capfirst }}</span>
+    </a>
+  {% else %}
+    <a href="{% url 'userprofile:login' %}" class="btn btn-style btn-primary search-btn" title="Get Started">
+      <i class="bi bi-box-arrow-in-right me-2 fs-4 fw-bold" style="color: #FFD700; text-shadow: 0 0 3px #b8860b;" aria-hidden="true"></i>Get Started
+    </a>
+  {% endif %}
+</li>
+
+
+
+              <!-- search popup -->
+              <!-- <div id="search" class="pop-overlay">
+                <div class="popup">
+                  <h3 class="title-w3l two mb-4">Search Here</h3>
+                  <form action="error.html" method="GET" class="search-box">
+                    <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="">
+                    <button type="submit" class="btn">Search Now</button>
+                  </form>
+                  <div class="quick-links-side follow-us mt-5 text-center">
+                    <h5 class="title-side mb-3">Follow Us</h5>
+                    <ul class="social-icons-top">
+                      <li>
+                        <a href="#url" class="twitter">
+                          <span class="fab fa-twitter"></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#url" class="facebook">
+                          <span class="fab fa-facebook-f"></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#url" class="linkedin">
+                          <span class="fab fa-linkedin-in"></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#url" class="instagram">
+                          <span class="fab fa-instagram"></span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <a class="close" href="#close">×</a>
+              </div> -->
+              <!-- /search popup -->
+            </li>
+          </ul>
+          <!--//search-right-->
+        </div>
+        <!-- toggle switch for light and dark theme -->
+        <!-- Theme Toggle Switch -->
+        <div class="mobile-position">
+          <nav class="navigation">
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox">
+                <div class="mode-container">
+                  <i class="bi bi-sun-fill sun-icon"></i>
+                  <i class="bi bi-moon-stars-fill moon-icon"></i>
+                </div>
+              </label>
+            </div>
+          </nav>
+        </div>
+      </nav>
+      <!-- //toggle switch for light and dark theme -->
+    </div>
+  </header>
+  <!--//Header-->
+  <!--/inner-page-->
+  <div class="inner-banner py-5">
+    <section class="w3l-breadcrumb text-left py-sm-5">
+      <div class="container">
+        <div class="w3breadcrumb-right">
+          <ul class="breadcrumbs-custom-path">
+            <li>
+              <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="active">
+              <span class="fas fa-angle-double-right mx-2"></span> Services
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!--//inner-page-->
+  <!--/services-->
+  <section class="w3l-services2" id="services">
+    <div id="cwp23-block" class="py-5">
+      <div class="container py-lg-5">
+        <div class="row cwp23-content">
+          <div class="col-lg-6 cwp23-img">
+            <h6 class="title-subw3hny mb-1">What We Offer</h6>
+            <h3 class="title-w3l mb-2">Thomys Place Event & Booking with Luxury Interiors</h3>
+            <p class="mt-4"> At Thomys Place, we offer an unforgettable experience with our luxury event spaces, fully equipped rooms, and world-class services designed to make your event and stay exceptional. Whether you're hosting a corporate gathering, wedding, or special occasion, our venue provides the perfect setting. </p>
+            <p class="mt-4">
+              <strong style="color: #DAA520;">Event Spaces:</strong> Luxuriously designed halls for every occasion, from weddings to corporate events. <br>
+              <strong style="color: #DAA520;">Booking Rooms:</strong> Elegant, fully furnished rooms designed for comfort and relaxation during your stay. <br>
+              <strong style="color: #DAA520;">Corporate Events:</strong> A premier venue for conferences, seminars, and business functions, complete with high-tech amenities and seamless service. <br>
+              <strong style="color: #DAA520;">Celebrations & Weddings:</strong> Host memorable moments with timeless elegance, from anniversaries to dream weddings. <br>
+              <strong style="color: #DAA520;">Fully Equipped Kitchen:</strong> On-site modern kitchen facilities to support catering needs for any event, ensuring top-quality food service. <br>
+              <strong style="color: #DAA520;">Reliable Power Supply:</strong> Enjoy uninterrupted events and stays with our steady and dependable power backup systems. <br>
+              <strong style="color: #DAA520;">Spacious Parking:</strong> Ample and secure parking facilities ensure your guests arrive and depart with ease. <br>
+              <strong style="color: #DAA520;">Advanced Security:</strong> Your safety is our top priority — we utilize modern surveillance systems and trained personnel to provide a secure, worry-free environment.
+            </p>
+          </div>
+          <div class="col-lg-6 cwp23-text mt-lg-0 mt-5 ps-lg-5">
+            <div class="card shadow-lg border-0">
+              <!-- Added card and shadow-lg classes -->
+              <a href="#" class="d-block zoom">
+                <img src="{% static 'assets/images/thombys11.JPG' %}" alt="" class="img-fluid card-img-top radius-image">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--//services-->
+  <!--/feature-section-->
+  <section class="w3l-aboutblock1 grids-3-w3l py-5" id="services">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <div class="title-content text-center mb-3">
+        <h6 class="title-subw3hny mb-1">We Offer</h6>
+        <h3 class="title-w3l">Special Services</h3>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 grids-feature mt-5">
+          <img src="{% static 'assets/images/Security.jpeg' %}" alt="" class="img-fluid radius-image">
+          <div class="area-box mt-4">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+            <div class="area-box-info">
+              <h4>
+                <a href="#feature" class="title-head">Security Guards</a>
+              </h4>
+              <p>Professional bouncers and security personnel ensure your event is safe and secure, with modern surveillance systems in place.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 grids-feature mt-5">
+          <img src="{% static 'assets/images/catering.jpeg' %}" alt="" class="img-fluid radius-image">
+          <div class="area-box mt-4">
+            <i class="fas fa-utensils" aria-hidden="true"></i>
+            <div class="area-box-info">
+              <h4>
+                <a href="#feature" class="title-head">Caterer's Service</a>
+              </h4>
+              <p>Enjoy delicious, top-quality food with our professional catering service, tailored to suit your event's needs.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 grids-feature mt-5">
+          <img src="{% static 'assets/images/ushering.jpeg' %}" alt="" class="img-fluid radius-image">
+          <div class="area-box mt-4">
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <div class="area-box-info">
+              <h4>
+                <a href="#feature" class="title-head">Ushering Agency</a>
+              </h4>
+              <p>Our expert ushers will guide your guests seamlessly through your event, ensuring a smooth and pleasant experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/w3l-footer-29-main-->
+  <footer class="w3l-footer-29-main">
+    <div class="footer-29 py-5">
+      <div class="container py-lg-4">
+        <div class="row footer-top-29">
+          <div class="col-lg-4 footer-list-29 footer-1 pe-lg-5">
+            <h1>
+              <a class="navbar-brand pe-xl-5 pe-lg-4 d-flex flex-column align-items-center" href="{% url 'home' %}">
+                <span class="w3yellow text-center"> Thombys <span id="" class="text-white">Place</span>
+                </span>
+                <span class="d-flex flex-column align-items-center mt-1" style="font-weight: 100;">
+                  <i class="fas fa-hand-peace" style="font-size: 2rem; margin-bottom: 0.5rem; margin-top: 0.5rem; color: rgb(255, 174, 0);"></i>
+                  <span style="font-size: 1rem; font-weight: normal; margin-top: 0.3rem; color: white;">EVENT CENTER & <span class="w3yellow">LODGING</span>
+                  </span>
+                </span>
+              </a>
+            </h1>
+            <p class="parahny pr-lg-5 mr-xl-4 mb-4">Experience comfort and convenience at Thombys Place, where memorable events and relaxing stays await. </p>
+          </div>
+          <div class="col-lg-4 footer-list-29 footer-3 mt-lg-0 mt-5 pe-lg-5">
+            <h6 class="footer-title-29">Quick Links</h6>
+            <div class="footer-listw3-grids">
+              <ul class="footer-listw3">
+                <li>
+                  <a href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                  <a href="{% url 'about' %}">About</a>
+                </li>
+                <li>
+                  <a href="{% url 'services' %}">Services</a>
+                </li>
+                <li>
+                  <a href="">Bookings</a>
+                </li>
+                <li>
+                  <a href="{% url 'contact' %}">Contact</a>
+                </li>
+              </ul>
+              <ul class="footer-listw3">
+                <li>
+                  <a href="#privacy">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#term">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="#sales">Booking & Refund Policy</a>
+                </li>
+                <li>
+                  <a href="#faq">FAQ</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 footer-list-29 footer-4 mt-lg-0 mt-5">
+            <h6 class="footer-title-29">Stay in Touch</h6>
+            <p>Subscribe to our newsletter for the latest updates on events, bookings, and special offers at Thombys Place.</p>
+            <form action="#" class="subscribe" method="post">
+              <input type="email" name="email" placeholder="Your Email Address" required="">
+              <button>
+                <span class="fas fa-paper-plane"></span>
+              </button>
+            </form>
+            <div class="main-social-footer-29 mt-4">
+              <a href="#facebook" class="facebook">
+                <span class="fab fa-facebook-f"></span>
+              </a>
+              <a href="#twitter" class="twitter">
+                <span class="fab fa-twitter"></span>
+              </a>
+              <a href="#instagram" class="instagram">
+                <span class="fab fa-instagram"></span>
+              </a>
+              <a href="https://wa.me/yourphonenumber" class="whatsapp">
+                <span class="fab fa-whatsapp"></span>
+              </a>
+              <a href="#google" class="google">
+                <span class="fab fa-google-plus-g"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-copies text-center">
+          <p class="copy-footer-29">© 2025 Thombys Place. All rights reserved. Designed by <span class="">
+              <a href="" style="color:rgb(255, 174, 0);">Sunny-x Codes.</a>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+      <span class="fa fa-angle-up"></span>
+    </button>
+    <script>
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function() {
+        scrollFunction()
+      };
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("movetop").style.display = "block";
+        } else {
+          document.getElementById("movetop").style.display = "none";
+        }
+      }
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+    <!-- //move top -->
+  </footer>
+  <!-- Template JavaScript -->
+  <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'assets/js/theme-change.js' %}"></script>
+  <!-- MENU-JS -->
+  <script>
+    $(window).on("scroll", function() {
+      var scroll = $(window).scrollTop();
+      if (scroll >= 80) {
+        $("#site-header").addClass("nav-fixed");
+      } else {
+        $("#site-header").removeClass("nav-fixed");
+      }
+    });
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+      $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+      $(window).on("resize", function() {
+        if ($(window).width() > 991) {
+          $("header").removeClass("active");
+        }
+      });
+    });
+  </script>
+  <!-- //MENU-JS -->
+  <!-- disable body scroll which navbar is in active -->
+  <script>
+    $(function() {
+      $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+      })
+    });
+  </script>
+  <!-- //disable body scroll which navbar is in active -->
+  <!-- //bootstrap -->
+  <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+  <style>
+    /* === Base Light Theme (Default) === */
+    /* === Base Light Theme (Default) === */
+    body {
+      background-color: #fff;
+      color: #333;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* === Theme Switch Button Styling (Light Mode) === */
+    .theme-switch-wrapper {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1050;
+      background-color: transparent;
+      /* No background */
+      color: inherit;
+      /* Text color inherited */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      /* Padding to make the icon more clickable */
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Optional: subtle hover effect */
+    .theme-switch-wrapper:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      /* Slight highlight on hover */
+    }
+
+    /* Mobile view spacing adjustment */
+    @media (max-width: 576px) {
+      .theme-switch-wrapper {
+        top: -15px;
+        right: -15px;
+      }
+    }
+
+    /* === Dark Mode === */
+    [data-theme="dark"] body {
+      background-color: #121212;
+      color: #dcdcdc;
+    }
+
+    /* === Theme Switch Button Styling (Dark Mode) === */
+    [data-theme="dark"] .theme-switch-wrapper {
+      background-color: transparent;
+      /* No background in dark mode */
+      color: #fff;
+      /* Text color for dark mode */
+    }
+
+    /* === Icons for the Theme Switcher (Dark Mode) === */
+    [data-theme="dark"] .sun-icon,
+    [data-theme="light"] .moon-icon {
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .moon-icon {
+      opacity: 1;
+      color: #f1c40f;
+      /* Moon icon color */
+    }
+
+    [data-theme="light"] .sun-icon {
+      opacity: 1;
+      color: #f39c12;
+      /* Sun icon color */
+    }
+
+    .theme-switch {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .theme-switch input {
+      display: none;
+    }
+
+    .mode-container {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mode-container i {
+      position: absolute;
+      font-size: 22px;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Prevent images from dimming */
+    [data-theme="dark"] img {
+      filter: none;
+      opacity: 1;
+    }
+
+    /* Keep navbar and other elements consistent across themes */
+    [data-theme="dark"] .navbar,
+    [data-theme="dark"] .theme-switch-wrapper,
+    [data-theme="dark"] .navigation,
+    [data-theme="dark"] .mobile-position {
+      background: transparent;
+      color: inherit;
+    }
+
+    /* Base Styling for Light Mode */
+    #place {
+      color: #fff;
+      /* Ensure text is white in light mode */
+    }
+
+    /* Dark Mode Override */
+    [data-theme="dark"] #place {
+      color: #fff;
+      /* Force text to be white in dark mode as well */
+    }
+  </style>
+  <script>
+    const toggleSwitch = document.querySelector('#checkbox');
+    const currentTheme = localStorage.getItem('theme');
+    // Apply saved theme
+    if (currentTheme) {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      toggleSwitch.checked = currentTheme === 'dark';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+    // Switch theme on toggle
+    toggleSwitch.addEventListener('change', function() {
+      if (this.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
+  <!-- Pre-Loader --> {% include 'home/pre-loader.html' %}
+</body>
+</html>

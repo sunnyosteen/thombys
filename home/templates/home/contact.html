@@ -1,0 +1,875 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Thombys Palace Event Center</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style-liberty.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/css.gg/icons/all.css" rel="stylesheet" />
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap CSS (CDN) -->
+    <!-- Google Fonts (Optional, add if you want specific fonts) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/owl.carousel.js' %}"></script>
+  </body>
+</html>
+<body>
+  <!--/Header-->
+  <header id="site-header" class="fixed-top">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light stroke py-lg-0">
+        <h1>
+          <a class="navbar-brand pe-xl-5 pe-lg-4 d-flex flex-column align-items-center" href="{% url 'home' %}">
+            <span class="w3yellow text-center"> Thombys <span id="place" class="text-white">Place</span>
+            </span>
+            <span class="d-flex flex-column align-items-center mt-1" style="font-weight: 100;">
+              <i class="fas fa-hand-peace" style="font-size: 2rem; margin-bottom: 0.5rem; margin-top: 0.5rem;"></i>
+              <span class="event_center" style="font-size: 1rem; font-weight: normal; margin-top: 0.3rem; color: inherit !important;">
+                EVENT CENTER & <span class="w3yellow">LODGING</span>
+              </span>
+            </span>
+            
+          </a>
+        </h1>
+       <!-- THOMBYS PLACE & EVENT CENTE <iframe src="https://archive.org/embed/thombys7" width="640" height="480" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+          </div>R LOGO JS AND CSS -->
+<style>
+  /* Initial text-white color for Place */
+
+  /* Initial white color for event center text */
+.event_center {
+  color: white !important;
+  transition: color 0.3s ease;
+}
+
+/* Dark color when scrolled */
+.nav-scrolled .event_center {
+  color: #333 !important;
+}
+
+/* Keep LODGING yellow in both states */
+.event_center .w3yellow {
+  color: #ffc107 !important;
+}
+  #place {
+    color: white;
+    /* Default color is white */
+    transition: color 0.3s ease;
+    /* Smooth transition for color change */
+  }
+
+  /* Darker color when scrolled (applies only if not in dark mode) */
+  .scrolled {
+    color: #333 !important;
+    /* Dark color when scrolled */
+  }
+
+  /* Dark Mode */
+  [data-theme="dark"] #place {
+    color: white !important; /* Keep text white in dark mode, even when scrolled */
+  }
+</style>
+<style>
+  /* Initial styles */
+  .event_center {
+    font-size: 1rem;
+    font-weight: normal;
+    margin-top: 0.3rem;
+    color: white !important;
+    transition: color 0.3s ease;
+  }
+
+  /* Scrolled state - light mode */
+  .nav-scrolled:not([data-theme="dark"]) .event_center {
+    color: #333 !important;
+  }
+
+  /* Dark mode styles - all cases */
+  [data-theme="dark"] .event_center,
+  [data-theme="dark"] .nav-scrolled .event_center,
+  [data-theme="dark"] .event_center:hover {
+    color: white !important;
+  }
+
+  /* Light mode hover behavior */
+  :not([data-theme="dark"]) .event_center:hover {
+    color: inherit !important;
+  }
+
+  /* LODGING stays yellow always */
+  .event_center .w3yellow {
+    color: #ffc107 !important;
+  }
+</style>
+
+<script>
+  // JavaScript to change color when scrolling
+  window.addEventListener('scroll', function() {
+    var placeSpan = document.getElementById('place');
+    var isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark'; // Check if dark mode is active
+
+    // Check if the page has been scrolled down by a certain amount
+    if (window.scrollY > 50 && !isDarkMode) { // Only change color if not in dark mode
+      placeSpan.classList.add('scrolled'); // Add dark color in light mode
+    } else {
+      placeSpan.classList.remove('scrolled'); // Remove dark color when scrolled back up
+    }
+  });
+</script>
+
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+          <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-lg-auto my-2 my-lg-0 navbar-nav-scroll">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'services' %}">Services</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#Pages" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Bookings <span class="fa fa-angle-down ms-1"></span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a class="dropdown-item pt-2"  href="{% url 'hall' %}">Hall Booking</a>
+                </li>
+                <li>
+                  <a class="dropdown-item"  href="{% url 'room' %}">Room Booking</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="email.html">Special Packages</a>
+                </li>
+                <!-- <li><a class="dropdown-item" href="elements.html">Elements</a></li><li><a class="dropdown-item" href="landing.html">Landing Page</a></li><li><a class="dropdown-item" href="error.html">Error Page</a></li> -->
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+          </ul>
+          <!--/search-right-->
+          <ul class="header-search me-lg-4">
+           <li class="search-right">
+  {% if user.is_authenticated %}
+    <a href="{% url 'userprofile:dashboard' %}" class="btn btn-style btn-primary search-btn d-flex align-items-center" title="Dashboard">
+      <i class="bi bi-person-circle me-2 fs-4" style="color: #FFD700;"></i>
+      <span class="fw-semibold text-truncate" style="max-width: 150px;">Hi, {{ user.username|capfirst }}</span>
+    </a>
+  {% else %}
+    <a href="{% url 'userprofile:login' %}" class="btn btn-style btn-primary search-btn" title="Get Started">
+      <i class="bi bi-box-arrow-in-right me-2 fs-4 fw-bold" style="color: #FFD700; text-shadow: 0 0 3px #b8860b;" aria-hidden="true"></i>Get Started
+    </a>
+  {% endif %}
+</li>
+
+
+
+              <!-- search popup -->
+              <!-- <div id="search" class="pop-overlay">
+                <div class="popup">
+                  <h3 class="title-w3l two mb-4">Search Here</h3>
+                  <form action="error.html" method="GET" class="search-box">
+                    <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="">
+                    <button type="submit" class="btn">Search Now</button>
+                  </form>
+                  <div class="quick-links-side follow-us mt-5 text-center">
+                    <h5 class="title-side mb-3">Follow Us</h5>
+                    <ul class="social-icons-top">
+                      <li>
+                        <a href="#url" class="twitter">
+                          <span class="fab fa-twitter"></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#url" class="facebook">
+                          <span class="fab fa-facebook-f"></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#url" class="linkedin">
+                          <span class="fab fa-linkedin-in"></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#url" class="instagram">
+                          <span class="fab fa-instagram"></span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <a class="close" href="#close">×</a>
+              </div> -->
+              <!-- /search popup -->
+            </li>
+          </ul>
+          <!--//search-right-->
+        </div>
+        <!-- toggle switch for light and dark theme -->
+        <!-- Theme Toggle Switch -->
+        <div class="mobile-position">
+          <nav class="navigation">
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox">
+                <div class="mode-container">
+                  <i class="bi bi-sun-fill sun-icon"></i>
+                  <i class="bi bi-moon-stars-fill moon-icon"></i>
+                </div>
+              </label>
+            </div>
+          </nav>
+        </div>
+      </nav>
+      <!-- //toggle switch for light and dark theme -->
+    </div>
+  </header>
+  <!--//Header-->
+  <!--/inner-page-->
+  <div class="inner-banner py-5">
+    <section class="w3l-breadcrumb text-left py-sm-5">
+      <div class="container">
+        <div class="w3breadcrumb-right">
+          <ul class="breadcrumbs-custom-path">
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li class="active">
+              <span class="fas fa-angle-double-right mx-2"></span> Contact Us
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!--//inner-page-->
+  <!--/contact1-->
+  <section class="w3l-contact-1 py-5" id="contact">
+    <div class="contacts-9 py-lg-5 py-md-4">
+      <div class="container">
+        <!--/contact-block-->
+        <div class="map-iframe">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317718.69319292053!2d7.3660!3d5.1003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a47246c6c4a1e4d%3A0x12968e50dcb0905f!2sAba%2C+Nigeria!5e0!3m2!1sen!2spl!4v1680728007341!5m2!1sen!2spl" width="100%" height="400" frameborder="0" style="border: 0px;" allowfullscreen=""></iframe>
+        </div>
+        <!--//contact-block-->
+        <div class="row contact-view mt-5 pt-lg-4">
+          <div class="col-lg-6 cont-details mb-lg-0 mb-5 pe-lg-5">
+            <h6 class="title-subw3hny mb-1">Get in Touch</h6>
+            <h3 class="title-w3l mb-4">Contact Us for Event & Lodging Bookings</h3>
+            <p class="mb-sm-5 mb-4">We are here to assist you with all your event and lodging needs. Whether you're planning a wedding, corporate event, or a relaxing getaway, we have you covered. <br> We guarantee a prompt response and resolution within 24 hours to ensure your event or stay goes smoothly. </p>
+            <div class="w3-addressinfo-grids">
+              <div class="w3-addressinfo-gd">
+                <h5 class="mb-4">Aba Abia State, Nigeria.</h5>
+                <div class="cont-top">
+                  <div class="cont-left text-center">
+                    <span class="fas fa-phone-alt"></span>
+                  </div>
+                  <div class="cont-right">
+                    <h6>Phone number</h6>
+                    <p>
+                      <a href="tel:+(234)8141359894">+(234)8141359894</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="cont-top margin-up">
+                  <div class="cont-left text-center">
+                    <span class="fas fa-envelope-open-text"></span>
+                  </div>
+                  <div class="cont-right">
+                    <h6>Send Email</h6>
+                    <p>
+                      <a href="mailto:thombysplaceeventcenter@gmail.com" class="mail">thombysplaceevent <br>center@gmail.com </a>
+                    </p>
+                  </div>
+                </div>
+                <div class="cont-top margin-up">
+                  <div class="cont-left text-center">
+                    <span class="fas fa-map-marked-alt"></span>
+                  </div>
+                  <div class="cont-right">
+                    <h6>Address</h6>
+                    <p class="pr-lg-5">#1 Osusu Amaukwa By SDA Bus Stop</p>
+                  </div>
+                </div>
+              </div>
+              <div class="w3-addressinfo-gd">
+                <h5 class="mb-4">Follow Us</h5>
+                <div class="cont-top">
+                  <div class="cont-left text-center">
+                    <span class="fab fa-facebook"></span>
+                  </div>
+                  <div class="cont-right">
+                    <h6>Facebook</h6>
+                    <p>
+                      <a href="https://www.facebook.com/share/1AJr3SiXiY/?mibextid=LQQJ4d">Visit Our facebook</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="cont-top margin-up">
+                  <div class="cont-left text-center">
+                    <span class="fab fa-instagram"></span>
+                  </div>
+                  <div class="cont-right">
+                    <h6>Instagram</h6>
+                    <p>
+                      <a href="" class="">Follow us on Instagram</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="cont-top margin-up">
+                  <div class="cont-left text-center">
+                    <span class="fab fa-twitter"></span>
+                  </div>
+                  <div class="cont-right">
+                    <h6>Twitter</h6>
+                    <p class="pr-lg-5">
+                      <a href="">Follow us on Twitter</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 map-content-9">
+            <h5 class="mb-sm-4 mb-3">Drop Us a Message</h5>
+            <form action="https://sendmail.w3layouts.com/submitForm" method="post">
+              <div class="twice">
+                <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="Name" required="" />
+              </div>
+              <div class="twice">
+                <input type="email" class="form-control" name="w3lSender" id="w3lSender" placeholder="Email" required="" />
+              </div>
+              <div class="twice">
+                <input type="text" class="form-control" name="w3lSubject" id="w3lSubject" placeholder="Subject" required="" />
+              </div>
+              <textarea name="w3lMessage" class="form-control" id="w3lMessage" placeholder="Message" required=""></textarea>
+              <div class="w3lhny-submit text-right">
+                <button type="submit" class="btn btn-primary btn-style mt-4">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/contact1-->
+  <!--/w3l-footer-29-main-->
+  <footer class="w3l-footer-29-main">
+    <div class="footer-29 py-5">
+      <div class="container py-lg-4">
+        <div class="row footer-top-29">
+          <div class="col-lg-4 footer-list-29 footer-1 pe-lg-5">
+            <h1>
+              <a class="navbar-brand pe-xl-5 pe-lg-4 d-flex flex-column align-items-center" href="{% url 'home' %}">
+                <span class="w3yellow text-center"> Thombys <span id="" class="text-white">Place</span>
+                </span>
+                <span class="d-flex flex-column align-items-center mt-1" style="font-weight: 100;">
+                  <i class="fas fa-hand-peace" style="font-size: 2rem; margin-bottom: 0.5rem; margin-top: 0.5rem; color: rgb(255, 174, 0);"></i>
+                  <span style="font-size: 1rem; font-weight: normal; margin-top: 0.3rem; color: white;">EVENT CENTER & <span class="w3yellow">LODGING</span>
+                  </span>
+                </span>
+              </a>
+            </h1>
+            <p class="parahny pr-lg-5 mr-xl-4 mb-4">Experience comfort and convenience at Thombys Place, where memorable events and relaxing stays await. </p>
+          </div>
+          <div class="col-lg-4 footer-list-29 footer-3 mt-lg-0 mt-5 pe-lg-5">
+            <h6 class="footer-title-29">Quick Links</h6>
+            <div class="footer-listw3-grids">
+              <ul class="footer-listw3">
+                <li>
+                  <a href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                  <a href="{% url 'about' %}">About</a>
+                </li>
+                <li>
+                  <a href="{% url 'services' %}">Services</a>
+                </li>
+                <li>
+                  <a href="">Bookings</a>
+                </li>
+                <li>
+                  <a href="{% url 'contact' %}">Contact</a>
+                </li>
+              </ul>
+              <ul class="footer-listw3">
+                <li>
+                  <a href="#privacy">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#term">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="#sales">Booking & Refund Policy</a>
+                </li>
+                <li>
+                  <a href="#faq">FAQ</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 footer-list-29 footer-4 mt-lg-0 mt-5">
+            <h6 class="footer-title-29">Stay in Touch</h6>
+            <p>Subscribe to our newsletter for the latest updates on events, bookings, and special offers at Thombys Place.</p>
+            <form action="#" class="subscribe" method="post">
+              <input type="email" name="email" placeholder="Your Email Address" required="">
+              <button style="
+                  padding: 12px 20px !important;
+                  font-size: 20px !important;
+                  height: 54px !important;
+                  display: inline-flex !important;
+                  align-items: center !important;
+                  justify-content: center !important;
+                  line-height: 1 !important;
+                  border: none;
+                  cursor: pointer;
+                ">
+                <span class="fas fa-paper-plane" style="
+                    font-size: 20px !important;
+                    line-height: 1 !important;
+                    display: inline-block !important;
+                    vertical-align: middle !important;
+                  "></span>
+              </button>
+            </form>
+            <div class="main-social-footer-29 mt-4">
+              <a href="#facebook" class="facebook">
+                <span class="fab fa-facebook-f"></span>
+              </a>
+              <a href="#twitter" class="twitter">
+                <span class="fab fa-twitter"></span>
+              </a>
+              <a href="#instagram" class="instagram">
+                <span class="fab fa-instagram"></span>
+              </a>
+              <a href="https://wa.me/yourphonenumber" class="whatsapp">
+                <span class="fab fa-whatsapp"></span>
+              </a>
+              <a href="#google" class="google">
+                <span class="fab fa-google-plus-g"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-copies text-center">
+          <p class="copy-footer-29">© 2025 Thombys Place. All rights reserved. Designed by <span class="">
+              <a href="" style="color:rgb(255, 174, 0);">Sunny-x Codes.</a>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+      <span class="fa fa-angle-up"></span>
+    </button>
+    <!-- blog-grids CSS -->
+    <style>
+      /* BLINKING BUTTON */
+      @keyframes blink {
+        0% {
+          background-color: #007bff;
+          /* Normal button color */
+          color: white;
+          /* Normal text color */
+        }
+
+        50% {
+          background-color: yellow;
+          /* Blink color */
+          color: black;
+          /* Text color when blinking */
+        }
+
+        100% {
+          background-color: #007bff;
+          /* Normal button color */
+          color: white;
+          /* Normal text color */
+        }
+      }
+
+      .blinking-button {
+        animation: blink 1s infinite;
+        transition: background-color 0.3s, color 0.3s;
+        /* Smooth color transition */
+      }
+
+      /* Stop blinking when hovered */
+      .blinking-button:hover {
+        animation: none;
+        /* Stop the animation */
+        background-color: #007bff;
+        /* Keep the normal background color */
+        color: white;
+        /* Keep the normal text color */
+      }
+
+      /* Set up the perspective on the image container */
+      .card-header {
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Create the flip effect only for the image */
+      .card-img-bottom {
+        transition: transform 0.3s;
+        /* Smooth transition for flipping */
+        transform-style: preserve-3d;
+        /* Ensure the content inside is displayed in 3D */
+        backface-visibility: hidden;
+        /* Hide the back face when the image is flipped */
+      }
+
+      /* When hovering over the card, flip the image slightly */
+      .card-header:hover .card-img-bottom {
+        transform: rotateY(15deg);
+        /* Slight flip effect */
+      }
+
+      /* Optional: Add some padding to the card to avoid image overflow */
+      .card-body {
+        padding: 1rem;
+      }
+
+      /* Optional: If you want the card to keep its dimensions consistent when the image flips */
+      .card-img-bottom {
+        width: 100%;
+        /* Ensure the image fills its container */
+        height: auto;
+      }
+    </style>
+    <!-- FAQ STYLE -->
+    <style>
+      /* Accordion Button Styling */
+      .accordion-button {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #5f6368;
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+      }
+
+      .accordion-button:hover {
+        background-color: #e9ecef;
+      }
+
+      /* Accordion Body Styling */
+      .accordion-body {
+        font-size: 1rem;
+        color: #555;
+        padding: 1.2rem;
+        background-color: #fafafa;
+        border-top: 1px solid #ddd;
+      }
+
+      /* Heading Styling */
+      h2 {
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+        color: #343a40;
+      }
+    </style>
+    <!-- END FAQ STYLE -->
+    <script>
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function() {
+        scrollFunction()
+      };
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("movetop").style.display = "block";
+        } else {
+          document.getElementById("movetop").style.display = "none";
+        }
+      }
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+    <!-- //move top -->
+  </footer>
+  <!-- Template JavaScript -->
+  <script src="{% static 'assets/js/jquery-3.3.1.min.js'%}"></script>
+  <script src="{% static 'assets/js/theme-change.js' %}"></script>
+  <!-- MENU-JS -->
+  <script>
+    $(window).on("scroll", function() {
+      var scroll = $(window).scrollTop();
+      if (scroll >= 80) {
+        $("#site-header").addClass("nav-fixed");
+      } else {
+        $("#site-header").removeClass("nav-fixed");
+      }
+    });
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+      $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+      $(window).on("resize", function() {
+        if ($(window).width() > 991) {
+          $("header").removeClass("active");
+        }
+      });
+    });
+  </script>
+  <!-- //MENU-JS -->
+  <!-- disable body scroll which navbar is in active -->
+  <script>
+    $(function() {
+      $('.navbar-toggler').click(function() {
+        $('body').toggleClass('noscroll');
+      })
+    });
+  </script>
+  <!-- //disable body scroll which navbar is in active -->
+  <!-- //bootstrap -->
+  <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+  <style>
+    /* === Base Light Theme (Default) === */
+    body {
+      background-color: #fff;
+      color: #333;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* === Theme Switch Button Styling (Light Mode) === */
+    .theme-switch-wrapper {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1050;
+      background-color: transparent;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .theme-switch-wrapper:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    @media (max-width: 576px) {
+      .theme-switch-wrapper {
+        top: -15px;
+        right: -15px;
+      }
+    }
+
+    /* === Dark Mode === */
+    [data-theme="dark"] body {
+      background-color: #121212;
+      color: #dcdcdc;
+    }
+
+    [data-theme="dark"] .theme-switch-wrapper {
+      background-color: transparent;
+      color: #fff;
+    }
+
+    /* === Icons for the Theme Switcher === */
+    [data-theme="dark"] .sun-icon,
+    [data-theme="light"] .moon-icon {
+      opacity: 0;
+    }
+
+    [data-theme="dark"] .moon-icon {
+      opacity: 1;
+      color: #f1c40f;
+    }
+
+    [data-theme="light"] .sun-icon {
+      opacity: 1;
+      color: #f39c12;
+    }
+
+    .theme-switch {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .theme-switch input {
+      display: none;
+    }
+
+    .mode-container {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mode-container i {
+      position: absolute;
+      font-size: 22px;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Prevent images from dimming */
+    [data-theme="dark"] img {
+      filter: none;
+      opacity: 1;
+    }
+
+    /* Navbar, navigation, etc. */
+    [data-theme="dark"] .navbar,
+    [data-theme="dark"] .theme-switch-wrapper,
+    [data-theme="dark"] .navigation,
+    [data-theme="dark"] .mobile-position {
+      background: transparent;
+      color: inherit;
+    }
+
+    /* === Form Styling === */
+    form input,
+    form textarea {
+      color: #fff !important;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    form input::placeholder,
+    form textarea::placeholder {
+      color: #aaa !important;
+    }
+
+    form textarea {
+      height: 150px;
+    }
+
+    .w3lhny-submit button {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .w3lhny-submit button:hover {
+      background-color: #0056b3;
+    }
+
+    /* === Light Mode Overrides === */
+    [data-theme="light"] form input,
+    [data-theme="light"] form textarea {
+      color: #333 !important;
+      background-color: #fff !important;
+      border: 1px solid #ccc;
+    }
+
+    /* === Dark Mode Overrides === */
+    [data-theme="dark"] form input,
+    [data-theme="dark"] form textarea {
+      color: #fff !important;
+      background-color: #333 !important;
+      border: 1px solid #555;
+    }
+
+    /* === Place Element Text === */
+    #place {
+      color: #fff !important;
+    }
+
+    [data-theme="dark"] #place {
+      color: #fff !important;
+    }
+
+    /* === Subscribe Form Button Fix === */
+    form.subscribe button {
+      background-color: #007bff;
+      color: #fff;
+      padding: 6px 12px;
+      /* Consistent padding */
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+
+    form.subscribe button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Fix the icon size inside the button */
+    form.subscribe button span {
+      font-size: 18px;
+      /* Adjusted font size for the icon */
+    }
+
+    /* Dark Mode Override for Subscribe Button */
+    [data-theme="dark"] form.subscribe button {
+      background-color: #0056b3;
+      color: #fff;
+    }
+
+    [data-theme="dark"] form.subscribe button span {
+      color: #fff;
+      /* Make sure icon color is white in dark mode */
+    }
+  </style>
+  <script>
+    const toggleSwitch = document.querySelector('#checkbox');
+    const currentTheme = localStorage.getItem('theme');
+    // Apply saved theme
+    if (currentTheme) {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      toggleSwitch.checked = currentTheme === 'dark';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+    // Switch theme on toggle
+    toggleSwitch.addEventListener('change', function() {
+      if (this.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
+  <!-- Pre-Loader --> {% include 'home/pre-loader.html' %}
+</body>
+</html>

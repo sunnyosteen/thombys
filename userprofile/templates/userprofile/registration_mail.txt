@@ -1,0 +1,11 @@
+Hi {{ user.username }},
+
+You're almost done registering.
+
+Please complete your registration by clicking this link:
+{{ confirm_link }}
+
+If you didn't register, you can ignore this email.
+
+Thanks,
+Your Website Team

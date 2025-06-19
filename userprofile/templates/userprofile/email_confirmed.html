@@ -1,0 +1,50 @@
+<!-- userprofile/email_confirmed.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #28a745;
+            font-size: 2.5rem;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Email Confirmed</h1>
+    <p>Thank you for confirming your email address! You can now access your account.</p>
+    <a href="{% url 'login' %}" class="button">Go to Login</a>
+</div>
+
+</body>
+</html>
