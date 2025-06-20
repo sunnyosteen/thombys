@@ -33,7 +33,7 @@
             </span>
             <span class="d-flex flex-column align-items-center mt-1" style="font-weight: 100;">
               <i class="fas fa-hand-peace" style="font-size: 2rem; margin-bottom: 0.5rem; margin-top: 0.5rem;"></i>
-              <span style="font-size: 1rem; font-weight: normal; margin-top: 0.3rem; color: inherit !important;">
+              <span class="event_center" style="font-size: 1rem; font-weight: normal; margin-top: 0.3rem; color: inherit !important;">
                 EVENT CENTER & <span class="w3yellow">LODGING</span>
               </span>
             </span>
@@ -44,6 +44,22 @@
           </div>R LOGO JS AND CSS -->
 <style>
   /* Initial text-white color for Place */
+
+  /* Initial white color for event center text */
+.event_center {
+  color: white !important;
+  transition: color 0.3s ease;
+}
+
+/* Dark color when scrolled */
+.nav-scrolled .event_center {
+  color: #333 !important;
+}
+
+/* Keep LODGING yellow in both states */
+.event_center .w3yellow {
+  color: #ffc107 !important;
+}
   #place {
     color: white;
     /* Default color is white */
@@ -60,6 +76,38 @@
   /* Dark Mode */
   [data-theme="dark"] #place {
     color: white !important; /* Keep text white in dark mode, even when scrolled */
+  }
+</style>
+<style>
+  /* Initial styles */
+  .event_center {
+    font-size: 1rem;
+    font-weight: normal;
+    margin-top: 0.3rem;
+    color: white !important;
+    transition: color 0.3s ease;
+  }
+
+  /* Scrolled state - light mode */
+  .nav-scrolled:not([data-theme="dark"]) .event_center {
+    color: #333 !important;
+  }
+
+  /* Dark mode styles - all cases */
+  [data-theme="dark"] .event_center,
+  [data-theme="dark"] .nav-scrolled .event_center,
+  [data-theme="dark"] .event_center:hover {
+    color: white !important;
+  }
+
+  /* Light mode hover behavior */
+  :not([data-theme="dark"]) .event_center:hover {
+    color: inherit !important;
+  }
+
+  /* LODGING stays yellow always */
+  .event_center .w3yellow {
+    color: #ffc107 !important;
   }
 </style>
 
@@ -115,11 +163,23 @@
           </ul>
           <!--/search-right-->
           <ul class="header-search me-lg-4">
-            <li class="search-right">
-              <a href="#search" class="btn btn-style btn-primary search-btn" title="search">
-                <span class="fas fa-search me-2" aria-hidden="true"></span> Search </a>
+           <li class="search-right">
+  {% if user.is_authenticated %}
+    <a href="{% url 'userprofile:dashboard' %}" class="btn btn-style btn-primary search-btn d-flex align-items-center" title="Dashboard">
+      <i class="bi bi-person-circle me-2 fs-4" style="color: #FFD700;"></i>
+      <span class="fw-semibold text-truncate" style="max-width: 150px;">Hi, {{ user.username|capfirst }}</span>
+    </a>
+  {% else %}
+    <a href="{% url 'userprofile:login' %}" class="btn btn-style btn-primary search-btn" title="Get Started">
+      <i class="bi bi-box-arrow-in-right me-2 fs-4 fw-bold" style="color: #FFD700; text-shadow: 0 0 3px #b8860b;" aria-hidden="true"></i>Get Started
+    </a>
+  {% endif %}
+</li>
+
+
+
               <!-- search popup -->
-              <div id="search" class="pop-overlay">
+              <!-- <div id="search" class="pop-overlay">
                 <div class="popup">
                   <h3 class="title-w3l two mb-4">Search Here</h3>
                   <form action="error.html" method="GET" class="search-box">
@@ -153,7 +213,7 @@
                   </div>
                 </div>
                 <a class="close" href="#close">×</a>
-              </div>
+              </div> -->
               <!-- /search popup -->
             </li>
           </ul>
