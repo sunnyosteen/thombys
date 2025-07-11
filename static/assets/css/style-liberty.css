@@ -18890,7 +18890,7 @@ a.dropdown-item.active {
 
 
 .w3l-main-slider .banner-view {
-    background: url(../images/IMG_4221.JPG) no-repeat center;
+    background: url(../images/IMG_4221.webp) no-repeat center;
     -ms-background-size: cover;
     background-size: cover;
     z-index: 0;
@@ -18916,17 +18916,17 @@ a.dropdown-item.active {
 }
 
 .w3l-main-slider .banner-top2 {
-    background: url(../images/thombys1.jpg) no-repeat center;
+    background: url(../images/thombys1.webp) no-repeat center;
     background-size: cover;
 }
 
 .w3l-main-slider .banner-top3 {
-    background: url(../images/thombys2.JPG) no-repeat center;
+    background: url(../images/thombys2.webp) no-repeat center;
     background-size: cover;
 }
 
 .w3l-main-slider .banner-top4 {
-    background: url(../images/thombys3.jpg) no-repeat center;
+    background: url(../images/thombys3.webp) no-repeat center;
     background-size: cover;
 } */
 
@@ -19015,7 +19015,7 @@ a.btn.btn-style.btn-banner:hover {
 }
 
 .banner-w3l-media-title.img-vdohny {
-    background: url(../images/thombys1.jpg) no-repeat center;
+    background: url(../images/thombys1.webp) no-repeat center;
     background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
@@ -19582,7 +19582,7 @@ button.owl-next {
 /*--//owl-slider--*/
 /*--/video--*/
 .w3l-index5 {
-    background: url(../images/thombys1.jpg) no-repeat center;
+    background: url(../images/thombys1.webp) no-repeat center;
     background-size: cover;
     display: grid;
     align-items: center;
@@ -20619,7 +20619,7 @@ p.para-counter {
 /*--/w3l-services3--*/
 
 .w3l-services3 .new-block {
-    background: url(../images/banner2.jpg) no-repeat center;
+    background: url(../images/banner2.webp) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -20853,7 +20853,7 @@ p.para-counter {
 /*--//Our--Team--*/
 /*--/inner-banner--*/
 .inner-banner {
-    background: url(../images/thombys1.jpg) no-repeat center;
+    background: url(../images/thombys1.webp) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -21344,14 +21344,14 @@ ul.gallery_agile li {
 
 #Choco_left_arrow {
     float: left;
-    background-image: url(../images/left.png) !important;
+    background-image: url(../images/left.webp) !important;
     background-position: 12%;
     left: -20%;
 }
 
 #Choco_right_arrow {
     float: right;
-    background-image: url(../images/right.png) !important;
+    background-image: url(../images/right.webp) !important;
     background-position: 88%;
     left: 20%;
 }
@@ -21410,7 +21410,7 @@ ul.gallery_agile li {
 #Choco_close {
     width: 32px;
     height: 32px;
-    background-image: url(../images/close.png) !important;
+    background-image: url(../images/close.webp) !important;
     background-repeat: no-repeat;
     z-index: 1002;
     cursor: pointer;

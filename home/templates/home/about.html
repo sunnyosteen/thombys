@@ -5,17 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Thombys Palace Event Center</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/style-liberty.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/css.gg/icons/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-5.3.0-alpha1.min.css' %}">
+      <!-- <link href="https://unpkg.com/css.gg/icons/all.css" rel="stylesheet" /> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"> -->
+     <link rel="stylesheet" href="{% static 'assets/css/bootstrap-icons-1.10.5.css' %}">
     <!-- Bootstrap CSS (CDN) -->
     <!-- Google Fonts (Optional, add if you want specific fonts) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="{% static 'assets/css/gfont1.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/gfont2.css' %}">
+
+
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"> -->
   </head>
   <body>
     <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
@@ -176,48 +181,9 @@
   {% endif %}
 </li>
 
-
-
-              <!-- search popup -->
-              <!-- <div id="search" class="pop-overlay">
-                <div class="popup">
-                  <h3 class="title-w3l two mb-4">Search Here</h3>
-                  <form action="error.html" method="GET" class="search-box">
-                    <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="">
-                    <button type="submit" class="btn">Search Now</button>
-                  </form>
-                  <div class="quick-links-side follow-us mt-5 text-center">
-                    <h5 class="title-side mb-3">Follow Us</h5>
-                    <ul class="social-icons-top">
-                      <li>
-                        <a href="#url" class="twitter">
-                          <span class="fab fa-twitter"></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#url" class="facebook">
-                          <span class="fab fa-facebook-f"></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#url" class="linkedin">
-                          <span class="fab fa-linkedin-in"></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#url" class="instagram">
-                          <span class="fab fa-instagram"></span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <a class="close" href="#close">×</a>
-              </div> -->
-              <!-- /search popup -->
             </li>
           </ul>
-          <!--//search-right-->
+      
         </div>
         <!-- toggle switch for light and dark theme -->
         <!-- Theme Toggle Switch -->
@@ -264,7 +230,7 @@
         <div class="row w3l-passion-mid-grids mb-5 pb-lg-5">
           <div class="col-lg-6 w3hny-passion-item">
             <div class="image-wrapper">
-              <img src="{% static 'assets/images/thombys0.JPG' %}" alt="" class="img-fluid radius-image">
+              <img src="{% static 'assets/images/thombys0.webp' %}" alt="" class="img-fluid radius-image">
               <!-- Glass overlay added here -->
               <div class="blue-glass-overlay"></div>
             </div>
@@ -286,25 +252,25 @@
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="{% static 'assets/images/thombys05.jpg' %}" class="d-block w-100 radius-image" alt="...">
+                  <img src="{% static 'assets/images/thombys05.webp' %}" class="d-block w-100 radius-image" alt="...">
                 </div>
                 <div class="carousel-item">
-                  <img src="{% static 'assets/images/thombys20.jpg' %}" class="d-block w-100 radius-image" alt="..." style="height: 360px; position: relative;">
+                  <img src="{% static 'assets/images/thombys20.webp' %}" class="d-block w-100 radius-image" alt="..." style="height: 360px; position: relative;">
                   <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 255, 0.3);"></div>
                 </div>
                 <div class="carousel-item">
-                  <img src="{% static 'assets/images/thombysss.jpeg' %}" class="d-block w-100 radius-image" alt="...">
+                  <img src="{% static 'assets/images/thombysss.webp' %}" class="d-block w-100 radius-image" alt="...">
                 </div>
                 <div class="carousel-item">
-                  <img src="{% static 'assets/images/thombys16.jpg' %}" class="d-block w-100 radius-image" alt="..." style="height: 360px; position: relative;">
+                  <img src="{% static 'assets/images/thombys16.webp' %}" class="d-block w-100 radius-image" alt="..." style="height: 360px; position: relative;">
                   <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 255, 0.3);"></div>
                 </div>
                 <div class="carousel-item">
-                  <img src="{% static 'assets/images/thombys9.JPG' %}" class="d-block w-100 radius-image" alt="..." style="height: 360px; position: relative;">
+                  <img src="{% static 'assets/images/thombys9.webp' %}" class="d-block w-100 radius-image" alt="..." style="height: 360px; position: relative;">
                   <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 255, 0.3);"></div>
                 </div>
                 <div class="carousel-item">
-                  <img src="{% static 'assets/images/thombyspark.JPG' %}" class="d-block w-100 radius-image" alt="..." style="height: 360px; position: relative;">
+                  <img src="{% static 'assets/images/thombyspark.webp' %}" class="d-block w-100 radius-image" alt="..." style="height: 360px; position: relative;">
                   <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 255, 0.3);"></div>
                 </div>
               </div>

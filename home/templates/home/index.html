@@ -5,22 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Thombys Palace Event Center</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Template CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/style-liberty.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/css.gg/icons/all.css" rel="stylesheet" />
-    <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-5.3.0-alpha1.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-icons-1.10.5.css' %}">
     <!-- Bootstrap CSS (CDN) -->
     <!-- Google Fonts (Optional, add if you want specific fonts) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/gfont1.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/gfont2.css' %}">
   </head>
-  <body>
-    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
-    <script src="{% static 'assets/js/owl.carousel.js' %}"></script>
-  </body>
 </html>
 <body>
   <!--/Header-->
@@ -33,99 +26,11 @@
             </span>
             <span class="d-flex flex-column align-items-center mt-1" style="font-weight: 100;">
               <i class="fas fa-hand-peace" style="font-size: 2rem; margin-bottom: 0.5rem; margin-top: 0.5rem;"></i>
-              <span class="event_center" style="font-size: 1rem; font-weight: normal; margin-top: 0.3rem; color: inherit !important;">
-                EVENT CENTER & <span class="w3yellow">LODGING</span>
+              <span class="event_center" style="font-size: 1rem; font-weight: normal; margin-top: 0.3rem; color: inherit !important;"> EVENT CENTER & <span class="w3yellow">LODGING</span>
               </span>
             </span>
-            
           </a>
         </h1>
-       <!-- THOMBYS PLACE & EVENT CENTE <iframe src="https://archive.org/embed/thombys7" width="640" height="480" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
-          </div>R LOGO JS AND CSS -->
-<style>
-  /* Initial text-white color for Place */
-
-  /* Initial white color for event center text */
-.event_center {
-  color: white !important;
-  transition: color 0.3s ease;
-}
-
-/* Dark color when scrolled */
-.nav-scrolled .event_center {
-  color: #333 !important;
-}
-
-/* Keep LODGING yellow in both states */
-.event_center .w3yellow {
-  color: #ffc107 !important;
-}
-  #place {
-    color: white;
-    /* Default color is white */
-    transition: color 0.3s ease;
-    /* Smooth transition for color change */
-  }
-
-  /* Darker color when scrolled (applies only if not in dark mode) */
-  .scrolled {
-    color: #333 !important;
-    /* Dark color when scrolled */
-  }
-
-  /* Dark Mode */
-  [data-theme="dark"] #place {
-    color: white !important; /* Keep text white in dark mode, even when scrolled */
-  }
-</style>
-<style>
-  /* Initial styles */
-  .event_center {
-    font-size: 1rem;
-    font-weight: normal;
-    margin-top: 0.3rem;
-    color: white !important;
-    transition: color 0.3s ease;
-  }
-
-  /* Scrolled state - light mode */
-  .nav-scrolled:not([data-theme="dark"]) .event_center {
-    color: #333 !important;
-  }
-
-  /* Dark mode styles - all cases */
-  [data-theme="dark"] .event_center,
-  [data-theme="dark"] .nav-scrolled .event_center,
-  [data-theme="dark"] .event_center:hover {
-    color: white !important;
-  }
-
-  /* Light mode hover behavior */
-  :not([data-theme="dark"]) .event_center:hover {
-    color: inherit !important;
-  }
-
-  /* LODGING stays yellow always */
-  .event_center .w3yellow {
-    color: #ffc107 !important;
-  }
-</style>
-
-<script>
-  // JavaScript to change color when scrolling
-  window.addEventListener('scroll', function() {
-    var placeSpan = document.getElementById('place');
-    var isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark'; // Check if dark mode is active
-
-    // Check if the page has been scrolled down by a certain amount
-    if (window.scrollY > 50 && !isDarkMode) { // Only change color if not in dark mode
-      placeSpan.classList.add('scrolled'); // Add dark color in light mode
-    } else {
-      placeSpan.classList.remove('scrolled'); // Remove dark color when scrolled back up
-    }
-  });
-</script>
-
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
           <span class="navbar-toggler-icon fa icon-close fa-times"></span>
@@ -146,10 +51,10 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item pt-2"  href="{% url 'hall' %}">Hall Booking</a>
+                  <a class="dropdown-item pt-2" href="{% url 'hall' %}">Hall Booking</a>
                 </li>
                 <li>
-                  <a class="dropdown-item"  href="{% url 'room' %}">Room Booking</a>
+                  <a class="dropdown-item" href="{% url 'room' %}">Room Booking</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="email.html">Special Packages</a>
@@ -163,153 +68,188 @@
           </ul>
           <!--/search-right-->
           <ul class="header-search me-lg-4">
-           <li class="search-right">
-  {% if user.is_authenticated %}
-    <a href="{% url 'userprofile:dashboard' %}" class="btn btn-style btn-primary search-btn d-flex align-items-center" title="Dashboard">
-      <i class="bi bi-person-circle me-2 fs-4" style="color: #FFD700;"></i>
-      <span class="fw-semibold text-truncate" style="max-width: 150px;">Hi, {{ user.username|capfirst }}</span>
-    </a>
-  {% else %}
-    <a href="{% url 'userprofile:login' %}" class="btn btn-style btn-primary search-btn" title="Get Started">
-      <i class="bi bi-box-arrow-in-right me-2 fs-4 fw-bold" style="color: #FFD700; text-shadow: 0 0 3px #b8860b;" aria-hidden="true"></i>Get Started
-    </a>
-  {% endif %}
-</li>
-
-
-
-              <!-- search popup -->
-              <!-- <div id="search" class="pop-overlay">
-                <div class="popup">
-                  <h3 class="title-w3l two mb-4">Search Here</h3>
-                  <form action="error.html" method="GET" class="search-box">
-                    <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="">
-                    <button type="submit" class="btn">Search Now</button>
-                  </form>
-                  <div class="quick-links-side follow-us mt-5 text-center">
-                    <h5 class="title-side mb-3">Follow Us</h5>
-                    <ul class="social-icons-top">
-                      <li>
-                        <a href="#url" class="twitter">
-                          <span class="fab fa-twitter"></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#url" class="facebook">
-                          <span class="fab fa-facebook-f"></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#url" class="linkedin">
-                          <span class="fab fa-linkedin-in"></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#url" class="instagram">
-                          <span class="fab fa-instagram"></span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <a class="close" href="#close">×</a>
-              </div> -->
-              <!-- /search popup -->
+            <li class="search-right"> {% if user.is_authenticated %} <a href="{% url 'userprofile:dashboard' %}" class="btn btn-style btn-primary search-btn d-flex align-items-center" title="Dashboard">
+                <i class="bi bi-person-circle me-2 fs-4" style="color: #FFD700;"></i>
+                <span class="fw-semibold text-truncate" style="max-width: 150px;">Hi, {{ user.username|capfirst }}</span>
+              </a> {% else %} <a href="{% url 'userprofile:login' %}" class="btn btn-style btn-primary search-btn" title="Get Started">
+                <i class="bi bi-box-arrow-in-right me-2 fs-4 fw-bold" style="color: #FFD700; text-shadow: 0 0 3px #b8860b;" aria-hidden="true"></i>Get Started </a> {% endif %} </li>
             </li>
           </ul>
-          <!--//search-right-->
         </div>
         <!-- toggle switch for light and dark theme -->
         <!-- Theme Toggle Switch -->
-        <div class="mobile-position">
-          <nav class="navigation">
-            <div class="theme-switch-wrapper">
-              <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox">
-                <div class="mode-container">
-                  <i class="bi bi-sun-fill sun-icon"></i>
-                  <i class="bi bi-moon-stars-fill moon-icon"></i>
-                </div>
-              </label>
-            </div>
-          </nav>
-        </div>
+      <div class="mobile-position">
+  <nav class="navigation">
+<!-- Theme Switcher Button -->
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+      <input type="checkbox" id="checkbox">
+      <div class="mode-container">
+        <!-- Sun Icon (Light Mode) -->
+        <span class="sun-icon">☀️</span>
+        <!-- Moon Icon (Dark Mode) -->
+        <span class="moon-icon">🌙</span>
+      </div>
+    </label>
+  </div>
+
+
+
+  </nav>
+</div>
+
       </nav>
       <!-- //toggle switch for light and dark theme -->
     </div>
+      <style>
+          /* Initial text-white color for Place */
+          /* Initial white color for event center text */
+          .event_center {
+            color: white !important;
+            transition: color 0.3s ease;
+          }
+
+          /* Dark color when scrolled */
+          .nav-scrolled .event_center {
+            color: #333 !important;
+          }
+
+          /* Keep LODGING yellow in both states */
+          .event_center .w3yellow {
+            color: #ffc107 !important;
+          }
+
+          #place {
+            color: white;
+            /* Default color is white */
+            transition: color 0.3s ease;
+            /* Smooth transition for color change */
+          }
+
+          /* Darker color when scrolled (applies only if not in dark mode) */
+          .scrolled {
+            color: #333 !important;
+            /* Dark color when scrolled */
+          }
+
+          /* Dark Mode */
+          [data-theme="dark"] #place {
+            color: white !important;
+            /* Keep text white in dark mode, even when scrolled */
+          }
+        </style>
+        <style>
+          /* Initial styles */
+          .event_center {
+            font-size: 1rem;
+            font-weight: normal;
+            margin-top: 0.3rem;
+            color: white !important;
+            transition: color 0.3s ease;
+          }
+
+          /* Scrolled state - light mode */
+          .nav-scrolled:not([data-theme="dark"]) .event_center {
+            color: #333 !important;
+          }
+
+          /* Dark mode styles - all cases */
+          [data-theme="dark"] .event_center,
+          [data-theme="dark"] .nav-scrolled .event_center,
+          [data-theme="dark"] .event_center:hover {
+            color: white !important;
+          }
+
+          /* Light mode hover behavior */
+          :not([data-theme="dark"]) .event_center:hover {
+            color: inherit !important;
+          }
+
+          /* LODGING stays yellow always */
+          .event_center .w3yellow {
+            color: #ffc107 !important;
+          }
+        </style>
+        <script>
+          // JavaScript to change color when scrolling
+          window.addEventListener('scroll', function() {
+            var placeSpan = document.getElementById('place');
+            var isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark'; // Check if dark mode is active
+            // Check if the page has been scrolled down by a certain amount
+            if (window.scrollY > 50 && !isDarkMode) { // Only change color if not in dark mode
+              placeSpan.classList.add('scrolled'); // Add dark color in light mode
+            } else {
+              placeSpan.classList.remove('scrolled'); // Remove dark color when scrolled back up
+            }
+          });
+        </script>
+        <!-- IMPORTANT CSS FOR PLACE TEXT END -->
   </header>
   <!--//Header-->
   <!--/Banner-Start-->
   <!-- main-slider -->
-   <!-- main-slider -->
-   <section class="w3l-main-slider banner-slider position-relative" id="home">
+  <!-- main-slider -->
+  <section class="w3l-main-slider banner-slider position-relative" id="home">
     <div class="owl-one owl-carousel owl-theme">
-  
       <!-- Slide 1 -->
       <div class="item">
         <div class="slider-info banner-view banner-top1">
           <div class="container">
             <div class="mobile-slider">
-              <h5>Elegance Meets Dreams</h5>
-              <a href="about.html" class="btn btn-style btn-banner mobile-btn">Book Now</a>
             </div>
           </div>
         </div>
       </div>
-  
       <!-- Slide 2 -->
       <div class="item">
         <div class="slider-info banner-view banner-top2">
           <div class="container">
             <div class="mobile-slider">
               <h5>Elegance Meets Dreams</h5>
-              <a href="about.html" class="btn btn-style btn-banner mobile-btn">Book Now</a>
+             
             </div>
             <div class="banner-info header-hero-19">
               <h5>Elegance Meets Dreams</h5>
-              <a href="about.html" class="btn btn-style btn-banner mt-sm-5 mt-4">Book Now</a>
+              
             </div>
           </div>
         </div>
       </div>
-  
       <!-- Slide 3 -->
       <div class="item">
         <div class="slider-info banner-view banner-top3">
           <div class="container">
             <div class="mobile-slider">
               <h5>Events to Remember</h5>
-              <a href="about.html" class="btn btn-style btn-banner mobile-btn">Book Now</a>
+             
             </div>
             <div class="banner-info header-hero-19">
               <h5 class="thombys-title">Events to Remember</h5>
-              <a href="about.html" class="btn btn-style btn-banner mt-sm-5 mt-4">Book Now</a>
+  
             </div>
           </div>
         </div>
       </div>
-  
       <!-- Slide 4 -->
       <div class="item">
         <div class="slider-info banner-view banner-top4">
           <div class="container">
             <div class="mobile-slider">
               <h5>Elegance & Comfort</h5>
-              <a href="about.html" class="btn btn-style btn-banner mobile-btn">Book Now</a>
+             
             </div>
             <div class="banner-info header-hero-19">
               <h5>Elegance & Comfort</h5>
-              <a href="about.html" class="btn btn-style btn-banner mt-sm-5 mt-4">Book Now</a>
+            
             </div>
           </div>
         </div>
       </div>
-  
     </div>
     <!--/banner-w3l-media-sec-->
     <div class="banner-w3l-media-sec">
       <div class="banner-w3l-media-title">
-        <h3 class="title-w3l two">Celebrate Your Style at Thomys</h3>
+        <h3 class="title-w3l two">Celebrate Your Style at Thombys</h3>
       </div>
       <div class="banner-w3l-media-title second-2">
         <p class="">Experience luxury, comfort, and exceptional service in every detail..</p>
@@ -332,59 +272,59 @@
   </section>
   <!-- SLIDER STYLE -->
   <!-- SLIDER STYLE -->
-<style>
-  /* ===== MOBILE VIEW ===== */
-  @media (max-width: 767px) {
-    .w3l-main-slider .owl-carousel .item .slider-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      position: relative;
+  <style>
+    /* ===== MOBILE VIEW ===== */
+    @media (max-width: 767px) {
+      .w3l-main-slider .owl-carousel .item .slider-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        position: relative;
+      }
+
+      /* Hide desktop text/button in mobile */
+      .w3l-main-slider .owl-carousel .item .banner-info h5,
+      .w3l-main-slider .owl-carousel .item .banner-info .btn-banner {
+        display: none;
+      }
+
+      /* Mobile-specific content styling */
+      .mobile-slider {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px 15px 40px;
+      }
+
+      .mobile-slider h5 {
+        font-size: 24px;
+        color: white;
+        margin-bottom: 15px;
+      }
+
+      .mobile-btn {
+        padding: 10px 30px;
+        font-size: 16px;
+        background-color: inherit;
+        color: white;
+        text-decoration: none;
+        border: 1px solid white;
+        border-radius: 5px;
+      }
     }
-  
-    /* Hide desktop text/button in mobile */
-    .w3l-main-slider .owl-carousel .item .banner-info h5,
-    .w3l-main-slider .owl-carousel .item .banner-info .btn-banner {
-      display: none;
+
+    /* ===== DESKTOP VIEW ===== */
+    @media (min-width: 768px) {
+      .mobile-slider {
+        display: none;
+      }
     }
-  
-    /* Mobile-specific content styling */
-    .mobile-slider {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 40px 15px 40px;
-    }
-  
-    .mobile-slider h5 {
-      font-size: 24px;
-      color: white;
-      margin-bottom: 15px;
-    }
-  
-    .mobile-btn {
-      padding: 10px 30px;
-      font-size: 16px;
-      background-color: inherit;
-      color: white;
-      text-decoration: none;
-      border: 1px solid white;
-      border-radius: 5px;
-    }
-  }
-  
-  /* ===== DESKTOP VIEW ===== */
-  @media (min-width: 768px) {
-    .mobile-slider {
-      display: none;
-    }
-  }
   </style>
-   <!-- END SLYDER STYLE -->
+  <!-- END SLYDER STYLE -->
   <!-- //main-slider -->
   <!--/bottom-3-grids-->
   <div class="w3l-3-grids py-5" id="grids-3">
@@ -406,7 +346,7 @@
         <div class="col-lg-4 col-md-6">
           <div class="grids3-info position-relative">
             <a href="#" class="d-block zoom" style="text-decoration: none;">
-              <img src="{% static 'assets/images/thombys1.jpg' %}" alt="Event Hall 1" class="img-fluid news-image" style="height: 250px; width: 100%; object-fit: cover;">
+              <img src="{% static 'assets/images/thombys1.webp' %}" alt="Event Hall 1" class="img-fluid news-image" style="height: 250px; width: 100%; object-fit: cover;">
             </a>
             <div class="w3-grids3-info">
               <h6>
@@ -421,7 +361,7 @@
         <div class="col-lg-4 col-md-6">
           <div class="grids3-info second position-relative">
             <a href="event-single.html" class="d-block zoom" style="text-decoration: none;">
-              <img src="{% static 'assets/images/thomby6.jpeg' %}" alt="Event Hall 2" class="img-fluid news-image" style="height: 250px; width: 100%; object-fit: cover;">
+              <img src="{% static 'assets/images/thomby6.webp'' %}" alt="Event Hall 2" class="img-fluid news-image" style="height: 250px; width: 100%; object-fit: cover;">
             </a>
             <div class="w3-grids3-info second">
               <h6>
@@ -436,7 +376,7 @@
         <div class="col-lg-4 col-md-6">
           <div class="grids3-info position-relative">
             <a href="event-single.html" class="d-block zoom" style="text-decoration: none;">
-              <img src="{% static 'assets/images/thombys05.jpg' %}" alt="Event Hall 3" class="img-fluid news-image" style="height: 250px; width: 100%; object-fit: cover;">
+              <img src="{% static 'assets/images/thombys05.webp'' %}" alt="Event Hall 3" class="img-fluid news-image" style="height: 250px; width: 100%; object-fit: cover;">
             </a>
             <div class="w3-grids3-info">
               <h6>
@@ -465,9 +405,9 @@
           <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
           <div id="small-dialog1" class="zoom-anim-dialog mfp-hide">
             <iframe src="https://archive.org/embed/standard_202505" width="640" height="480" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
-    </div>
   </section>
   <!-- //home-page-video-popup-->
   <!--/w3-grids-->
@@ -478,7 +418,7 @@
           <div class="col-lg-6 passion-grid-item-info pe-lg-5 mb-lg-0 mb-5">
             <!-- Image with custom styling -->
             <div class="custom-img-wrapper">
-              <img src="{% static 'assets/images/thombys0.JPG' %}" class="custom-img" alt="Thomys Place Event & Booking" srcset="{% static 'assets/images/thombys0.JPG' %} 1x, {% static 'assets/images/thombys0@2x.JPG' %} 2x, {% static 'assets/images/thombys0@3x.JPG' %} 3x">
+              <img src="{% static 'assets/images/thombys0.webp'' %}" class="custom-img" alt="Thomys Place Event & Booking" srcset="{% static 'assets/images/thombys0.webp' %} 1x, {% static 'assets/images/thombys0@2x.webp' %} 2x, {% static 'assets/images/thombys0@3x.webp' %} 3x">
               <div class="dark-blue-glass"></div>
             </div>
           </div>
@@ -533,6 +473,7 @@
       </div>
     </div>
   </section>
+  <!-- IMPORTANT CSS -->
   <style>
     .custom-img-wrapper {
       position: relative;
@@ -617,43 +558,37 @@
       }
     }
   </style>
+  <!-- END IMPORTANT CSS -->
   <!--//w3-grids-->
-<!--/Gallery-Section-->
-<section class="w3l-gallery" id="gallery">
-  <div class="destionation-innf py-5">
-    <div class="container py-lg-5 py-md-4 py-2 HomePageGallery">
-      <div class="title-content text-center">
-        <h6 class="title-subw3hny text-center">Our Exquisite Venues</h6>
-        <h3 class="title-w3l mb-5 text-center">Explore Our Latest Events & Bookings at Thomys Place</h3>
-      </div>
-
-      <!-- Dynamic Gallery Grid -->
-      <ul class="gallery_agile">
-        {% for item in gallery_items %}
-          <li>
+  <!--/Gallery-Section-->
+  <section class="w3l-gallery" id="gallery">
+    <div class="destionation-innf py-5">
+      <div class="container py-lg-5 py-md-4 py-2 HomePageGallery">
+        <div class="title-content text-center">
+          <h6 class="title-subw3hny text-center">Our Exquisite Venues</h6>
+          <h3 class="title-w3l mb-5 text-center">Explore Our Latest Events & Bookings at Thomys Place</h3>
+        </div>
+        <!-- Dynamic Gallery Grid -->
+        <ul class="gallery_agile"> {% for item in gallery_items %} <li>
             <div class="w3_agile_portfolio_grid">
               <a href="{{ item.image.url }}">
                 <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid radius-image" />
                 <div class="w3layouts_news_grid_pos">
                   <div class="wthree_text">
-                    <h3><i class="fas fa-search"></i></h3>
+                    <h3>
+                      <i class="fas fa-search"></i>
+                    </h3>
                   </div>
                 </div>
               </a>
             </div>
-          </li>
-        {% empty %}
-        <div class="alert alert-warning text-center mx-auto" role="alert" style="max-width: 600px;">
-          <strong>No images found!</strong> Please check back later as we add more event photos.
-        </div>        
-
-        {% endfor %}
-      </ul>
+          </li> {% empty %} <div class="alert alert-warning text-center mx-auto" role="alert" style="max-width: 600px;">
+            <strong>No images found!</strong> Please check back later as we add more event photos.
+          </div> {% endfor %} </ul>
+      </div>
     </div>
-  </div>
-</section>
-<!--//Gallery-Section-->
-
+  </section>
+  <!--//Gallery-Section-->
   <!--/w3l-midslider-->
   <section class="w3l-midslider py-5" id="midslider">
     <!-- /grids -->
@@ -679,37 +614,38 @@
           <div id="owl-demo2" class="owl-three owl-carousel owl-theme">
             <div class="item">
               <div class="mid-slider-content">
-                <img src="{% static 'assets/images/thombys1.jpg' %}" class="img-fluid radius-image" alt="">
+                <img src="{% static 'assets/images/thombys1.webp'' %}" class="img-fluid radius-image" alt="">
               </div>
             </div>
             <div class="item">
               <div class="mid-slider-content">
-                <img src="{% static 'assets/images/thomby6.jpeg' %}" class="img-fluid radius-image" alt="">
+                <img src="{% static 'assets/images/thomby6.webp'' %}" class="img-fluid radius-image" alt="">
               </div>
             </div>
             <div class="item">
               <div class="mid-slider-content">
-                <img src="{% static 'assets/images/thombys7.jpeg' %}" class="img-fluid radius-image" alt="">
+                <img src="{% static 'assets/images/thombys7.webp'' %}" class="img-fluid radius-image" alt="">
               </div>
             </div>
             <div class="item">
               <div class="mid-slider-content">
-                <img src="{% static 'assets/images/thombys18.jpg' %}" class="img-fluid radius-image" alt="">
+                <img src="{% static 'assets/images/thombys18.webp'' %}" class="img-fluid radius-image" alt="">
               </div>
             </div>
             <div class="item">
               <div class="mid-slider-content">
-                <img src="{% static 'assets/images/thombys20.jpg' %}" class="img-fluid radius-image" alt="">
+                <img src="{% static 'assets/images/thombys20.webp' %}" class="img-fluid radius-image" alt="">
               </div>
             </div>
             <div class="item">
               <div class="mid-slider-content">
-                <img src="{% static 'assets/images/thombys19.jpg' %}" class="img-fluid radius-image" alt="">
+                <img src="{% static 'assets/images/thombys19.webp'' %}" class="img-fluid radius-image" alt="">
               </div>
             </div>
           </div>
         </div>
   </section>
+  <!-- IMPORTANT CSS  -->
   <style>
     /* what we offer style  */
     /* Default styles for larger screens */
@@ -746,8 +682,8 @@
       /* Ensures image fills space and looks consistent */
     }
   </style>
+  <!-- IMPORTANT CSS END   -->
   <!-- End what we offer -->
-  <!--//w3l-midslider-->
   <!-- Room Booking -->
   <!-- Room Booking -->
   <section class="w3l-text-11 py-5 pt-0">
@@ -758,19 +694,19 @@
           <h3 class="title-w3l mb-3 text-center">Available Rooms for Booking</h3>
         </div>
         <div class="row text11-content">
-  
           <!-- Standard Room -->
           <div class="col-lg-4 item mt-5">
             <div class="card shadow-lg hover-shadow">
               <div class="card-header p-0 position-relative border-0">
                 <a href="booking-single.html">
-                  <img class="card-img-bottom d-block radius-image" src="{% static 'assets/images/thombys18.jpg' %}" alt="Standard Room">
+                  <img class="card-img-bottom d-block radius-image" src="{% static 'assets/images/thombys18.webp'' %}" alt="Standard Room">
                   <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 255, 0.2);"></div>
                 </a>
               </div>
               <div class="card-body p-4 blog-details">
                 <h6 class="mt-4 fs-5">Standard Room</h6>
-                <a href="#admin" class="admin" style="text-decoration: none;">- by Thomby's Place</a><br>
+                <a href="#admin" class="admin" style="text-decoration: none;">- by Thomby's Place</a>
+                <br>
                 <a href="booking-single.html" class="blog-desc blog-desc-2" style="text-decoration: none;">Affordable Comfort for Your Stay</a>
                 <p>The Standard Room offers a cozy and budget-friendly option with essential amenities to ensure a pleasant stay. Ideal for solo travelers or couples.</p>
                 <div class="text-center mb-3">
@@ -784,19 +720,19 @@
               </div>
             </div>
           </div>
-  
           <!-- Mini Deluxe Room -->
           <div class="col-lg-4 item mt-5">
             <div class="card shadow-lg hover-shadow">
               <div class="card-header p-0 position-relative border-0">
                 <a href="booking-single.html">
-                  <img class="card-img-bottom d-block radius-image" src="{% static 'assets/images/thombys20.jpg' %}" alt="Mini Deluxe Room">
+                  <img class="card-img-bottom d-block radius-image" src="{% static 'assets/images/thombys20.webp'' %}" alt="Mini Deluxe Room">
                   <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 255, 0.3);"></div>
                 </a>
               </div>
               <div class="card-body p-4 blog-details">
                 <h6 class="mt-4 fs-5">Mini Deluxe Room</h6>
-                <a href="#admin" class="admin" style="text-decoration: none;">- by Thomby's Place</a><br>
+                <a href="#admin" class="admin" style="text-decoration: none;">- by Thomby's Place</a>
+                <br>
                 <a href="booking-single.html" class="blog-desc blog-desc-2" style="text-decoration: none;">Compact Luxury for a Cozy Stay</a>
                 <p>The Mini Deluxe Room offers more space and upgraded amenities, perfect for guests who seek a touch of luxury without the high cost.</p>
                 <div class="text-center mb-3">
@@ -810,19 +746,19 @@
               </div>
             </div>
           </div>
-  
           <!-- Deluxe Room -->
           <div class="col-lg-4 item mt-5">
             <div class="card shadow-lg hover-shadow">
               <div class="card-header p-0 position-relative border-0">
                 <a href="booking-single.html">
-                  <img class="card-img-bottom d-block radius-image" src="{% static 'assets/images/thombys19.jpg' %}" alt="Deluxe Room">
+                  <img class="card-img-bottom d-block radius-image" src="{% static 'assets/images/thombys19.webp'' %}" alt="Deluxe Room">
                   <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 255, 0.3);"></div>
                 </a>
               </div>
               <div class="card-body p-4 blog-details">
                 <h6 class="mt-4 fs-5">Deluxe Room</h6>
-                <a href="#admin" class="admin" style="text-decoration: none;">- by Thomby's Place</a><br>
+                <a href="#admin" class="admin" style="text-decoration: none;">- by Thomby's Place</a>
+                <br>
                 <a href="booking-single.html" class="blog-desc blog-desc-2" style="text-decoration: none;">Spacious and Comfortable</a>
                 <p>The Deluxe Room offers spacious luxury with upgraded amenities, perfect for guests seeking a premium experience with added comfort and style.</p>
                 <div class="text-center mb-3">
@@ -836,14 +772,11 @@
               </div>
             </div>
           </div>
-  
         </div>
         <!-- /grids -->
       </div>
     </div>
   </section>
-  
-  
   <!-- //END ROOM BOOKING// -->
   <!-- EVENT HALL BOOKING -->
   <section class="w3l-text-11 py-5 pt-0">
@@ -859,12 +792,13 @@
             <div class="card shadow-lg hover-shadow flex-fill d-flex flex-column">
               <div class="card-header p-0 position-relative border-0">
                 <a href="booking-single.html">
-                  <img class="card-img-bottom d-block radius-image" src="{% static 'assets/images/thombys2.JPG' %}" alt="Mini Hall">
+                  <img class="card-img-bottom d-block radius-image" src="{% static 'assets/images/thombys2.webp'' %}" alt="Mini Hall">
                 </a>
               </div>
               <div class="card-body p-4 blog-details d-flex flex-column">
                 <h6 class="mt-4 fs-5">Mini Hall</h6>
-                <a href="#admin" class="admin" style="text-decoration: none;">- Zaza Hall</a><br>
+                <a href="#admin" class="admin" style="text-decoration: none;">- Zaza Hall</a>
+                <br>
                 <a href="booking-single.html" class="blog-desc blog-desc-2" style="text-decoration: none;">Affordable Comfort for Small Events</a>
                 <p>Perfect for intimate gatherings or smaller events, the Mini Hall offers a stylish and budget-friendly space with essential facilities.</p>
                 <div class="text-center mb-3">
@@ -878,18 +812,18 @@
               </div>
             </div>
           </div>
-  
           <!-- Mega Hall -->
           <div class="col-lg-4 item mt-5 d-flex">
             <div class="card shadow-lg hover-shadow flex-fill d-flex flex-column">
               <div class="card-header p-0 position-relative border-0">
                 <a href="booking-single.html">
-                  <img class="card-img-bottom d-block radius-image" src="{% static 'assets/images/thombys14.jpg' %}" alt="Mega Hall">
+                  <img class="card-img-bottom d-block radius-image" src="{% static 'assets/images/thombys14.webp'' %}" alt="Mega Hall">
                 </a>
               </div>
               <div class="card-body p-4 blog-details d-flex flex-column">
                 <h6 class="mt-4 fs-5">Mega Hall</h6>
-                <a href="#admin" class="admin" style="text-decoration: none;">- Ugo Hall</a><br>
+                <a href="#admin" class="admin" style="text-decoration: none;">- Ugo Hall</a>
+                <br>
                 <a href="booking-single.html" class="blog-desc blog-desc-2" style="text-decoration: none;">Elegant Space for Grand Events</a>
                 <p>The Mega Hall provides a grand ambiance with spacious seating, lighting, and modern amenities. Ideal for weddings and large events.</p>
                 <div class="text-center mb-3">
@@ -903,18 +837,18 @@
               </div>
             </div>
           </div>
-  
           <!-- Elite Hall -->
           <div class="col-lg-4 item mt-5 d-flex">
             <div class="card shadow-lg hover-shadow flex-fill d-flex flex-column">
               <div class="card-header p-0 position-relative border-0">
                 <a href="booking-single.html">
-                  <img class="card-img-bottom d-block radius-image glass-effect" src="{% static 'assets/images/thombys1.jpg' %}" alt="Elite Hall" style="height: 239px;">
+                  <img class="card-img-bottom d-block radius-image glass-effect" src="{% static 'assets/images/thombys1.webp'' %}" alt="Elite Hall" style="height: 239px;">
                 </a>
               </div>
               <div class="card-body p-4 blog-details d-flex flex-column">
                 <h6 class="mt-4 fs-5">Elite Hall</h6>
-                <a href="#admin" class="admin" style="text-decoration: none;">- by Thomby's Place</a><br>
+                <a href="#admin" class="admin" style="text-decoration: none;">- by Thomby's Place</a>
+                <br>
                 <a href="booking-single.html" class="blog-desc blog-desc-2" style="text-decoration: none;">Luxury Venue for Premium Occasions</a>
                 <p>The Elite Hall is our most luxurious venue, featuring high-end decor, advanced AV systems, and capacity for major events with elegance.</p>
                 <div class="text-center mb-3">
@@ -928,13 +862,12 @@
               </div>
             </div>
           </div>
-  
         </div>
         <!-- /grids -->
       </div>
     </div>
   </section>
-  
+  <!-- IMPORTANT CSS -->
   <!-- Hall Styling -->
   <style>
     /* Ensure consistent height for all images */
@@ -980,6 +913,7 @@
       flex-direction: column;
     }
   </style>
+  <!-- IMPORTANT CSS END -->
   <!-- //END HALL BOOKING  -->
   <!--/w3l-project-->
   <section class="w3l-join-main py-5">
@@ -996,180 +930,63 @@
             </div>
           </div>
           <div class="col-lg-5 align-self mt-lg-0 mt-sm-5 mt-4">
-            <div class="w3l-buttons d-sm-flex justify-content-end">
-              <a href="services.html" class="btn btn-style btn-primary">Explore Our Services</a>
-              <a href="contact.html" class="btn btn-style transparant-btn ms-sm-2 btn btn-style btn-primary blinking-button">Book Your Event Now</a>
-            </div>
+           <div class="d-flex justify-content-end gap-2">
+    <a href="services.html" class="btn btn-style btn-primary">Explore Our Services</a>
+    <a href="contact.html" class="btn btn-style transparent-btn btn-primary blinking-button">Book Your Event Now</a>
+</div>
+
           </div>
         </div>
       </div>
     </div>
   </section>
   <!-- END OF EVENT HALL BOOKING -->
- <section>
-  <!-- FAQ Accordion Section -->
-  <div class="container-fluid mt-5">
-    <div class="title-content text-center">
-      <h6 class="title-subw3hny text-center">Thomby's Place FAQ</h6>
-      <h2 class="text-center mb-4">Frequently Asked Questions</h2>
-    </div>
-    <div class="accordion" id="faqAccordion" style="border: none;">
-      <!-- Question 1 -->
-      <div class="accordion-item" style="border: none; box-shadow: none;">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="border: none; box-shadow: none;">
-            What makes Thomby's Place a luxury destination?
-          </button>
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-          <div class="accordion-body" style="border-top: none;"> 
-            Thomby's Place offers a combination of luxurious accommodations, stunning event spaces, and personalized services that make every guest feel special. From elegant rooms to upscale amenities, we ensure comfort and style for all occasions.
+  <section>
+    <!-- FAQ Accordion Section -->
+    <div class="container-fluid mt-5">
+      <div class="title-content text-center">
+        <h6 class="title-subw3hny text-center">Thomby's Place FAQ</h6>
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+      </div>
+      <div class="accordion" id="faqAccordion" style="border: none;">
+        <!-- Question 1 -->
+        <div class="accordion-item" style="border: none; box-shadow: none;">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="border: none; box-shadow: none;"> What makes Thomby's Place a luxury destination? </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="border-top: none;"> Thomby's Place offers a combination of luxurious accommodations, stunning event spaces, and personalized services that make every guest feel special. From elegant rooms to upscale amenities, we ensure comfort and style for all occasions. </div>
           </div>
         </div>
-      </div>
-      <!-- Question 2 -->
-      <div class="accordion-item" style="border: none; box-shadow: none;">
-        <h2 class="accordion-header" id="headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="border: none; box-shadow: none;">
-            Do you provide kitchen services?
-          </button>
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-          <div class="accordion-body" style="border-top: none;">
-            Yes, we offer exclusive kitchen services to cater to all your culinary needs. Whether it's a private dinner, event catering, or room service, our expert chefs prepare delectable meals tailored to your preferences.
+        <!-- Question 2 -->
+        <div class="accordion-item" style="border: none; box-shadow: none;">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="border: none; box-shadow: none;"> Do you provide kitchen services? </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="border-top: none;"> Yes, we offer exclusive kitchen services to cater to all your culinary needs. Whether it's a private dinner, event catering, or room service, our expert chefs prepare delectable meals tailored to your preferences. </div>
           </div>
         </div>
-      </div>
-      <!-- Question 3 -->
-      <div class="accordion-item" style="border: none; box-shadow: none;">
-        <h2 class="accordion-header" id="headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="border: none; box-shadow: none;">
-            How reliable is the power supply at Thomby's Place?
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-          <div class="accordion-body" style="border-top: none;">
-            At Thomby's Place, we ensure uninterrupted service with a steady power supply. Our premises are equipped with backup generators to guarantee that your stay or event goes on smoothly, no matter the circumstances.
+        <!-- Question 3 -->
+        <div class="accordion-item" style="border: none; box-shadow: none;">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="border: none; box-shadow: none;"> How reliable is the power supply at Thomby's Place? </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="border-top: none;"> At Thomby's Place, we ensure uninterrupted service with a steady power supply. Our premises are equipped with backup generators to guarantee that your stay or event goes on smoothly, no matter the circumstances. </div>
           </div>
         </div>
-      </div>
-      <!-- Question 4 -->
-      <div class="accordion-item" style="border: none; box-shadow: none;">
-        <h2 class="accordion-header" id="headingFour">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="border: none; box-shadow: none;">
-            Is there sufficient security at the venue?
-          </button>
-        </h2>
-        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
-          <div class="accordion-body" style="border-top: none;">
-            Absolutely! We prioritize the safety and security of our guests. Our facility is equipped with 24/7 security personnel, CCTV surveillance, and secure access control to ensure a safe environment at all times.
+        <!-- Question 4 -->
+        <div class="accordion-item" style="border: none; box-shadow: none;">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="border: none; box-shadow: none;"> Is there sufficient security at the venue? </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="border-top: none;"> Absolutely! We prioritize the safety and security of our guests. Our facility is equipped with 24/7 security personnel, CCTV surveillance, and secure access control to ensure a safe environment at all times. </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-  <!--FAQ ENDS -->
-  <!--//w3l-project-->
-  <!--/testimonials-->
-  <section class="w3l-testimonials" id="testimonials">
-    <!-- /grids -->
-    <div class="cusrtomer-layout py-5">
-      <div class="container py-lg-4 py-md-3 py-2 pb-lg-0">
-        <div class="title-content text-center">
-          <h6 class="title-subw3hny">Testimonials</h6>
-          <h3 class="title-w3l mb-5">What Some of Our Happy Clients <br> Say About Thombys Place </h3>
-        </div>
-        <!-- /grids -->
-        <div class="testimonial-width">
-          <div id="owl-demo1" class="owl-two owl-carousel owl-theme">
-            <div class="item">
-              <div class="testimonial-content">
-                <div class="testimonial">
-                  <div class="testimonial-gds-1">
-                    <div class="test-img">
-                      <img src="{% static 'assets/images/avatarmale1.jpeg' %}" class="img-fluid" alt="client-img">
-                    </div>
-                    <div class="testi-des">
-                      <div class="peopl align-self">
-                        <h3>1. John Wilson</h3>
-                        <p class="indentity">Event Planner, Example City</p>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="quote-info">
-                    <i class="fas fa-quote-left me-2"></i> "Thombys Place is perfect for any event. Excellent parking, reliable power, and top-tier audio equipment." <i class="fas fa-quote-right ms-2"></i>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimonial-content">
-                <div class="testimonial">
-                  <div class="testimonial-gds-1">
-                    <div class="test-img">
-                      <img src="{% static 'assets/images/avatarfemale1.jpeg' %}" class="img-fluid" alt="client-img">
-                    </div>
-                    <div class="testi-des">
-                      <div class="peopl align-self">
-                        <h3>2. Shelly Johnson</h3>
-                        <p class="indentity">Wedding Planner, Example City</p>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="quote-info">
-                    <i class="fas fa-quote-left me-2"></i> "A fantastic venue with great facilities. The food was excellent, and the audio setup was flawless." <i class="fas fa-quote-right ms-2"></i>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimonial-content">
-                <div class="testimonial">
-                  <div class="testimonial-gds-1">
-                    <div class="test-img">
-                      <img src="{% static 'assets/images/avatarfemale2.jpeg' %}" class="img-fluid" alt="client-img">
-                    </div>
-                    <div class="testi-des">
-                      <div class="peopl align-self">
-                        <h3>3. Cathrine Wagner</h3>
-                        <p class="indentity">Corporate Client, Example City</p>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="quote-info">
-                    <i class="fas fa-quote-left me-2"></i> "Thombys Place made our event seamless. Great audio and ample parking!" <i class="fas fa-quote-right ms-2"></i>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="testimonial-content">
-                <div class="testimonial">
-                  <div class="testimonial-gds-1">
-                    <div class="test-img">
-                      <img src="{% static 'assets/images/avatarfemale3.jpeg' %}" class="img-fluid" alt="client-img">
-                    </div>
-                    <div class="testi-des">
-                      <div class="peopl align-self">
-                        <h3>4. Cuthbert Brain</h3>
-                        <p class="indentity">Party Organizer, Example City</p>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="quote-info">
-                    <i class="fas fa-quote-left me-2"></i> "A fantastic event experience. Reliable power, great parking, and flawless audio setup!" <i class="fas fa-quote-right ms-2"></i>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /grids -->
-    </div>
-    <!-- //grids -->
   </section>
   <!--//testimonials-->
   <!--/w3l-footer-29-main-->
@@ -1267,35 +1084,42 @@
     <button onclick="topFunction()" id="movetop" title="Go to top">
       <span class="fa fa-angle-up"></span>
     </button>
+    <!-- IMPORTANT CSS -->
     <!-- blog-grids CSS -->
     <style>
       /* BLINKING BUTTON */
       @keyframes blink {
         0% {
-          background-color: #007bff; /* Normal button color */
+          background-color: #007bff;
+          /* Normal button color */
           color: white;
           border-color: #007bff;
         }
+
         50% {
-          background-color: #FA8000; /* Blink color */
+          background-color: #FA8000;
+          /* Blink color */
           color: black;
           border-color: #FA8000;
         }
+
         100% {
-          background-color: #007bff; /* Normal button color */
+          background-color: #007bff;
+          /* Normal button color */
           color: white;
           border-color: #007bff;
         }
       }
-    
+
       .blinking-button {
-        animation: blink 2.5s ease-in-out infinite; /* Slower and smoother */
+        animation: blink 2.5s ease-in-out infinite;
+        /* Slower and smoother */
         transition: background-color 1s ease, color 1s ease, border-color 1s ease;
         background-color: #FA8000;
         color: white;
         border: 2px solid #FA8000;
       }
-    
+
       /* Stop blinking when hovered */
       .blinking-button:hover {
         animation: none;
@@ -1303,30 +1127,97 @@
         color: white;
         border-color: #007bff;
       }
-    
+
       /* IMAGE FLIP EFFECT */
       .card-header {
         position: relative;
         overflow: hidden;
       }
-    
+
       .card-img-bottom {
-        transition: transform 1s ease; /* Slower and smoother flip */
+        transition: transform 1s ease;
+        /* Slower and smoother flip */
         transform-style: preserve-3d;
         backface-visibility: hidden;
         width: 100%;
         height: auto;
       }
-    
+
       .card-header:hover .card-img-bottom {
-        transform: rotateY(15deg); /* Slight flip */
+        transform: rotateY(15deg);
+        /* Slight flip */
       }
-    
+
       .card-body {
         padding: 1rem;
       }
     </style>
-    
+    <!-- IMPORTANT CSS  END-->
+    <!-- PRELOADER (CSS-only) -->
+<style>
+  /* Fullscreen preloader */
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeOut 2s ease-out 1s forwards;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex-direction: column;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #ccc;
+    border-top: 4px solid #ddb502;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  .loader-text {
+    margin-top: 20px;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    font-weight: 600;
+    letter-spacing: 1px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+</style>
+
+<div id="preloader">
+  <div class="spinner"></div>
+  <div class="loader-text">Thombys Place</div>
+</div>
+
     <!-- FAQ STYLE -->
     <style>
       /* Accordion Button Styling */
@@ -1432,8 +1323,6 @@
     })
   </script>
   <!-- //script -->
-  <!-- script for tesimonials carousel slider -->
-  <script src="{% static 'assets/js/owl.carousel.js' %}"></script>
   <script>
     $(document).ready(function() {
       $("#owl-demo1").owlCarousel({
@@ -1460,8 +1349,6 @@
     })
   </script>
   <!-- //script for tesimonials carousel slider -->
-  <!-- script for midslider carousel slider -->
-  <script src="{% static 'assets/js/owl.carousel.js' %}"></script>
   <script>
     $(document).ready(function() {
       $("#owl-demo2").owlCarousel({
@@ -1554,10 +1441,8 @@
   <!-- //disable body scroll which navbar is in active -->
   <!-- //bootstrap -->
   <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-  <!-- Pre-Loader --> {% include 'home/pre-loader.html' %}
-   
-    <style>
-/* === Base Light Theme (Default) === */
+  <!-- IMPORTANT CSS -->
+  <style>
 /* === Base Light Theme (Default) === */
 body {
   background-color: #fff;
@@ -1566,27 +1451,25 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* === Theme Switch Button Styling (Light Mode) === */
+/* === Theme Switch Button Styling === */
 .theme-switch-wrapper {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 1050;
-  background-color: transparent; /* No background */
-  color: inherit; /* Text color inherited */
+  background-color: transparent;
+  color: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px; /* Padding to make the icon more clickable */
+  padding: 8px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Optional: subtle hover effect */
 .theme-switch-wrapper:hover {
-  background-color: rgba(0, 0, 0, 0.05); /* Slight highlight on hover */
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* Mobile view spacing adjustment */
 @media (max-width: 576px) {
   .theme-switch-wrapper {
     top: -15px;
@@ -1602,101 +1485,72 @@ body {
 
 /* === Theme Switch Button Styling (Dark Mode) === */
 [data-theme="dark"] .theme-switch-wrapper {
-  background-color: transparent; /* No background in dark mode */
-  color: #fff; /* Text color for dark mode */
+  color: #fff;
 }
 
-/* === Icons for the Theme Switcher (Dark Mode) === */
-[data-theme="dark"] .sun-icon,
-[data-theme="light"] .moon-icon {
-  opacity: 0;
-}
-
+/* === Show/Hide Icons Based on Active Theme === */
 [data-theme="dark"] .moon-icon {
-  opacity: 1;
-  color: #f1c40f; /* Moon icon color */
+  display: inline-block !important; /* Show moon icon when dark mode */
 }
 
 [data-theme="light"] .sun-icon {
-  opacity: 1;
-  color: #f39c12; /* Sun icon color */
+  display: inline-block !important; /* Show sun icon when light mode */
 }
 
-.theme-switch {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  background: transparent;
-}
-
-.theme-switch input {
+/* Initially hide both icons and only show the one active based on the theme */
+.sun-icon, .moon-icon {
   display: none;
 }
 
-.mode-container {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Default visibility (show both icons until theme is set) */
+body:not([data-theme]) .sun-icon,
+body:not([data-theme]) .moon-icon {
+  display: inline-block; /* Show both icons until theme is set */
 }
 
-.mode-container i {
-  position: absolute;
-  font-size: 22px;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  pointer-events: none;
-}
+  </style>
 
-/* Prevent images from dimming */
-[data-theme="dark"] img {
-  filter: none;
-  opacity: 1;
-}
 
-/* Keep navbar and other elements consistent across themes */
-[data-theme="dark"] .navbar,
-[data-theme="dark"] .theme-switch-wrapper,
-[data-theme="dark"] .navigation,
-[data-theme="dark"] .mobile-position {
-  background: transparent;
-  color: inherit;
-}
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+  // Check localStorage for theme preference
+  const savedTheme = localStorage.getItem('theme');
+  
+  // If a theme is saved, apply it, otherwise default to 'light'
+  if (savedTheme) {
+    document.body.setAttribute('data-theme', savedTheme);
+  } else {
+    document.body.setAttribute('data-theme', 'light'); // Default to light theme
+  }
 
-/* Base Styling for Light Mode */
-#place {
-  color: #fff; /* Ensure text is white in light mode */
-}
+  const checkbox = document.getElementById("checkbox");
 
-/* Dark Mode Override */
-[data-theme="dark"] #place {
-  color: #fff; /* Force text to be white in dark mode as well */
+  // If dark theme is active, check the checkbox
+  if (document.body.getAttribute('data-theme') === 'dark') {
+    checkbox.checked = true;
+  }
+
+  // Listen for checkbox toggle
+  checkbox.addEventListener("change", function () {
+    if (checkbox.checked) {
+      document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark'); // Save dark theme to localStorage
+    } else {
+      document.body.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light'); // Save light theme to localStorage
+    }
+  });
+});
+
+</script>
+
+<style>
+  @font-face {
+  font-family: 'YourFont';
+  src: url('...') format('woff2');
+  font-display: swap;
 }
 
 </style>
-
-  <script>
-    const toggleSwitch = document.querySelector('#checkbox');
-    const currentTheme = localStorage.getItem('theme');
-    // Apply saved theme
-    if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
-      toggleSwitch.checked = currentTheme === 'dark';
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-    // Switch theme on toggle
-    toggleSwitch.addEventListener('change', function() {
-      if (this.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-      }
-    });
-  </script>
 </body>
 </html>
