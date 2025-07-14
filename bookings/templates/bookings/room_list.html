@@ -1,0 +1,47 @@
+<div class="container py-4">
+  <h4 class="mb-4 text-center">Available Rooms & Halls</h4>
+
+  <div class="row">
+    {% for space in rooms %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          {% if space.image %}
+            <img src="{{ space.image.url }}" class="card-img-top img-fluid" alt="{{ space.name }}">
+          {% else %}
+            <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+              <span>No Image</span>
+            </div>
+          {% endif %}
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-primary">{{ space.name }}</h5>
+            <p class="mb-1">
+              <strong>Type:</strong> {{ space.get_space_type_display }}
+            </p>
+            <p class="mb-3">
+              <strong>Price per Day:</strong> ₦<span class="space-price">{{ space.price }}</span>
+            </p>
+            <a href="{% url 'bookings:checkout' space.id %}" class="btn btn-outline-primary mt-auto w-100">
+              Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12 text-center text-muted py-5">
+        <p>No available rooms or halls at the moment.</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  // This script is only needed if you want to use dynamic updates on this page.
+  // If this is just a listing page, JS might not be required here.
+  document.addEventListener("DOMContentLoaded", function () {
+    const prices = document.querySelectorAll('.space-price');
+    prices.forEach(priceEl => {
+      const raw = parseFloat(priceEl.textContent.replace(/[^\d.]/g, ''));
+      priceEl.textContent = raw.toFixed(2);  // Format price
+    });
+  });
+</script>

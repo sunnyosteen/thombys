@@ -335,8 +335,7 @@
   </div>
   <!--//inner-page-->
     </section>   
-
-    <!-- DATA SECTION -->
+<!-- DATA SECTION -->
 <div class="container-fluid px-2">
   <section class="py-5">
     <div class="container px-0">
@@ -349,68 +348,68 @@
     <h5 class="text-secondary fw-bold mb-4">Booking Overview</h5>
     <div class="row g-3 justify-content-center">
       
-      <!-- Total -->
+      <!-- Total Bookings -->
       <div class="col-6 col-sm-6 col-md-4 col-lg-4">
         <div class="card text-center shadow-sm border-0">
           <div class="card-body bg-light">
             <i class="bi bi-clipboard fs-2 text-primary"></i>
-            <h6 class="mt-2">Total</h6>
-            <h3 class="fw-bold">0</h3>
+            <h6 class="mt-2">Total Bookings</h6>
+            <h3 class="fw-bold">{{ total }}</h3>
           </div>
         </div>
       </div>
 
-      <!-- Requested -->
+      <!-- Pending -->
       <div class="col-6 col-sm-6 col-md-4 col-lg-4">
         <div class="card text-center shadow-sm border-0">
           <div class="card-body bg-info-subtle">
-            <i class="bi bi-journal-text fs-2 text-info"></i>
-            <h6 class="mt-2">Requested</h6>
-            <h3 class="fw-bold">1</h3>
+            <i class="bi bi-hourglass-split fs-2 text-info"></i>
+            <h6 class="mt-2">Pending</h6>
+            <h3 class="fw-bold">{{ pending }}</h3>
           </div>
         </div>
       </div>
 
-      <!-- Active -->
+      <!-- Approved -->
       <div class="col-6 col-sm-6 col-md-4 col-lg-4">
         <div class="card text-center shadow-sm border-0">
           <div class="card-body bg-success-subtle">
             <i class="bi bi-check-circle fs-2 text-success"></i>
-            <h6 class="mt-2">Active</h6>
-            <h3 class="fw-bold">0</h3>
+            <h6 class="mt-2">Approved</h6>
+            <h3 class="fw-bold">{{ approved }}</h3>
           </div>
         </div>
       </div>
 
-      <!-- Canceled -->
+      <!-- Declined -->
       <div class="col-6 col-sm-6 col-md-4 col-lg-4">
         <div class="card text-center shadow-sm border-0">
           <div class="card-body bg-danger-subtle">
-            <i class="bi bi-x-circle fs-2 text-danger"></i>
-            <h6 class="mt-2">Canceled</h6>
-            <h3 class="fw-bold">0</h3>
+            <i class="bi bi-x-octagon fs-2 text-danger"></i>
+            <h6 class="mt-2">Declined</h6>
+            <h3 class="fw-bold">{{ declined }}</h3>
           </div>
         </div>
       </div>
 
-      <!-- Checked Out -->
+      <!-- Cancelled -->
       <div class="col-6 col-sm-6 col-md-4 col-lg-4">
         <div class="card text-center shadow-sm border-0">
-          <div class="card-body bg-dark-subtle text-dark">
-            <i class="bi bi-box-arrow-right fs-2 text-dark"></i>
-            <h6 class="mt-2">Checked Out</h6>
-            <h3 class="fw-bold">0</h3>
+          <div class="card-body bg-secondary-subtle">
+            <i class="bi bi-slash-circle fs-2 text-secondary"></i>
+            <h6 class="mt-2">Cancelled</h6>
+            <h3 class="fw-bold">{{ cancelled }}</h3>
           </div>
         </div>
       </div>
 
-      <!-- Payment -->
+      <!-- Total Paid -->
       <div class="col-6 col-sm-6 col-md-4 col-lg-4">
         <div class="card text-center shadow-sm border-0">
           <div class="card-body bg-warning-subtle">
             <i class="bi bi-cash-stack fs-2 text-warning"></i>
-            <h6 class="mt-2">Payment</h6>
-            <h3 class="fw-bold">₦0.00</h3>
+            <h6 class="mt-2">Total Paid</h6>
+            <h3 class="fw-bold">₦{{ total_paid|floatformat:2 }}</h3>
           </div>
         </div>
       </div>
@@ -439,63 +438,34 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="table-active">
-      <th scope="row">#001</th>
-      <td>Room 101</td>
-      <td>2025-07-01</td>
-      <td>2025-07-05</td>
-      <td>₦250.00</td>
-      <td><span class="text-warning fw-bold">Pending</span></td>
-      <td>
-        <button class="btn btn-sm btn-danger"
-                data-bs-toggle="modal"
-                data-bs-target="#cancelModal"
-                data-booking="#001">Cancel</button>
-      </td>
-    </tr>
-    <tr class="table-success">
-      <th scope="row">#002</th>
-      <td>Banquet Hall A</td>
-      <td>2025-06-10</td>
-      <td>2025-06-15</td>
-      <td>₦500.00</td>
-      <td><span class="text-warning fw-bold">Pending</span></td>
-      <td>
-        <button class="btn btn-sm btn-danger"
-                data-bs-toggle="modal"
-                data-bs-target="#cancelModal"
-                data-booking="#002">Cancel</button>
-      </td>
-    </tr>
-    <tr class="table-danger">
-      <th scope="row">#003</th>
-      <td>Room 202</td>
-      <td>2025-06-20</td>
-      <td>2025-06-22</td>
-      <td>₦180.00</td>
-      <td><span class="text-warning fw-bold">Pending</span></td>
-      <td>
-        <button class="btn btn-sm btn-danger"
-                data-bs-toggle="modal"
-                data-bs-target="#cancelModal"
-                data-booking="#003">Cancel</button>
-      </td>
-    </tr>
-    <tr class="table-info">
-      <th scope="row">#004</th>
-      <td>--</td>
-      <td>2025-07-10</td>
-      <td>2025-07-12</td>
-      <td>₦220.00</td>
-      <td><span class="text-warning fw-bold">Pending</span></td>
-      <td>
-        <button class="btn btn-sm btn-danger"
-                data-bs-toggle="modal"
-                data-bs-target="#cancelModal"
-                data-booking="#004">Cancel</button>
-      </td>
-    </tr>
-  </tbody>
+  {% for booking in bookings %}
+  <tr class="table-{{ booking.status }}">
+    <th scope="row">#{{ booking.id|stringformat:"03d" }}</th>
+    <td>{{ booking.space.name }}</td>
+    <td>{{ booking.check_in }}</td>
+    <td>{{ booking.check_out }}</td>
+    <td>₦{{ booking.amount }}</td>
+    <td><span class="text-warning fw-bold">{{ booking.status|title }}</span></td>
+    <td>
+      {% if booking.status == 'pending' %}
+  <button class="btn btn-sm btn-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#cancelModal"
+          data-booking="#{{ booking.id|stringformat:"03d" }}">Cancel</button>
+{% else %}
+  <span class="text-muted" title="No further actions allowed">
+    <i class="bi bi-lock-fill"></i>
+  </span>
+{% endif %}
+
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="7" class="text-center text-muted">No bookings yet.</td>
+  </tr>
+  {% endfor %}
+</tbody>
+
 </table>
 
 <!-- DELETE MODAL  -->
@@ -601,87 +571,42 @@
     color: #0d47a1 !important; /* Dark Blue */
   }
 </style>
-
 <!-- Mobile Receipt View -->
 <div class="receipt-container d-md-none" id="receiptView" style="max-width: 420px; margin: auto;">
   <div id="bookingCarousel" class="carousel slide" data-bs-interval="false">
     <div class="carousel-inner">
 
-      <!-- Booking 1 -->
-      <div class="carousel-item active">
+      {% for booking in bookings %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
         <div class="receipt-card watermark mb-3 p-3 border rounded shadow-sm bg-white mx-auto" style="max-width: 400px;">
-          <p><strong>Booking No:</strong> #001</p>
-          <p><strong>Room/Hall:</strong> Room 101</p>
-          <p><strong>Check In:</strong> 2025-07-01</p>
-          <p><strong>Check Out:</strong> 2025-07-05</p>
-          <p><strong>Total:</strong> ₦250.00</p>
-          <p><strong>Status:</strong> <span class="text-warning fw-bold">Pending</span></p>
+          <p><strong>Booking No:</strong> #{{ booking.id|stringformat:"03d" }}</p>
+          <p><strong>Room/Hall:</strong> {{ booking.space.name }}</p>
+          <p><strong>Check In:</strong> {{ booking.check_in }}</p>
+          <p><strong>Check Out:</strong> {{ booking.check_out }}</p>
+          <p><strong>Total:</strong> ₦{{ booking.amount }}</p>
+          <p><strong>Status:</strong> 
+            {% if booking.status == 'pending' %}
+              <span class="text-warning fw-bold">Pending</span>
+            {% elif booking.status == 'approved' %}
+              <span class="text-success fw-bold">Approved</span>
+            {% elif booking.status == 'declined' %}
+              <span class="text-danger fw-bold">Declined</span>
+            {% endif %}
+          </p>
           <div class="d-flex justify-content-center gap-2 mt-2">
-            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#receiptModal1">View</button>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#receiptModal{{ forloop.counter }}">View</button>
+            {% if booking.status == 'pending' %}
             <button class="btn btn-sm btn-danger"
                     data-bs-toggle="modal"
                     data-bs-target="#cancelBookingModal"
-                    data-booking="#001">Cancel</button>
+                    data-booking="#{{ booking.id|stringformat:"03d" }}">Cancel</button>
+            {% else %}
+            <button class="btn btn-sm btn-secondary disabled">Not Cancellable</button>
+            {% endif %}
           </div>
         </div>
       </div>
-
-      <!-- Booking 2 -->
-      <div class="carousel-item">
-        <div class="receipt-card watermark mb-3 p-3 border rounded shadow-sm bg-white mx-auto" style="max-width: 400px;">
-          <p><strong>Booking No:</strong> #002</p>
-          <p><strong>Room/Hall:</strong> Hall A</p>
-          <p><strong>Check In:</strong> 2025-07-10</p>
-          <p><strong>Check Out:</strong> 2025-07-12</p>
-          <p><strong>Total:</strong> ₦400.00</p>
-          <p><strong>Status:</strong> <span class="text-warning fw-bold">Pending</span></p>
-          <div class="d-flex justify-content-center gap-2 mt-2">
-            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#receiptModal2">View</button>
-            <button class="btn btn-sm btn-danger"
-                    data-bs-toggle="modal"
-                    data-bs-target="#cancelBookingModal"
-                    data-booking="#002">Cancel</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Booking 3 -->
-      <div class="carousel-item">
-        <div class="receipt-card watermark mb-3 p-3 border rounded shadow-sm bg-white mx-auto" style="max-width: 400px;">
-          <p><strong>Booking No:</strong> #003</p>
-          <p><strong>Room/Hall:</strong> Conference Room</p>
-          <p><strong>Check In:</strong> 2025-07-15</p>
-          <p><strong>Check Out:</strong> 2025-07-16</p>
-          <p><strong>Total:</strong> ₦300.00</p>
-          <p><strong>Status:</strong> <span class="text-warning fw-bold">Pending</span></p>
-          <div class="d-flex justify-content-center gap-2 mt-2">
-            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#receiptModal3">View</button>
-            <button class="btn btn-sm btn-danger"
-                    data-bs-toggle="modal"
-                    data-bs-target="#cancelBookingModal"
-                    data-booking="#003">Cancel</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Booking 4 -->
-      <div class="carousel-item">
-        <div class="receipt-card watermark mb-3 p-3 border rounded shadow-sm bg-white mx-auto" style="max-width: 400px;">
-          <p><strong>Booking No:</strong> #004</p>
-          <p><strong>Room/Hall:</strong> Ballroom</p>
-          <p><strong>Check In:</strong> 2025-07-20</p>
-          <p><strong>Check Out:</strong> 2025-07-22</p>
-          <p><strong>Total:</strong> ₦600.00</p>
-          <p><strong>Status:</strong> <span class="text-warning fw-bold">Pending</span></p>
-          <div class="d-flex justify-content-center gap-2 mt-2">
-            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#receiptModal4">View</button>
-            <button class="btn btn-sm btn-danger"
-                    data-bs-toggle="modal"
-                    data-bs-target="#cancelBookingModal"
-                    data-booking="#004">Cancel</button>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
 
     </div>
 
@@ -697,8 +622,7 @@
   </div>
 </div>
 
-<!-- CAROUSEL MODAL -->
-
+<!-- Cancel Booking Modal -->
 <div class="modal fade" id="cancelBookingModal" tabindex="-1" aria-labelledby="cancelBookingModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content text-start">
@@ -717,33 +641,30 @@
   </div>
 </div>
 
-<script>
-  const cancelBookingModal = document.getElementById('cancelBookingModal');
-  cancelBookingModal.addEventListener('show.bs.modal', function (event) {
-    const button = event.relatedTarget;
-    const bookingNumber = button.getAttribute('data-booking');
-    const bookingText = cancelBookingModal.querySelector('#booking-number');
-    bookingText.textContent = `Booking ${bookingNumber}`;
-  });
-</script>
-
-
-
-<!-- Receipt Modal for Booking 1 -->
-<div class="modal fade" id="receiptModal1" tabindex="-1" aria-labelledby="receiptModalLabel1" aria-hidden="true">
+<!-- Receipt Modals -->
+{% for booking in bookings %}
+<div class="modal fade" id="receiptModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="receiptModalLabel{{ forloop.counter }}" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-md">
-    <div class="modal-content" id="printableReceipt">
+    <div class="modal-content" id="printableReceipt{{ forloop.counter }}">
       <div class="modal-header bg-primary text-white">
-        <h5 class="modal-title" id="receiptModalLabel1">Booking Receipt #001</h5>
+        <h5 class="modal-title" id="receiptModalLabel{{ forloop.counter }}">Booking Receipt #{{ booking.id|stringformat:"03d" }}</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body watermark">
-        <p><strong>Booking No:</strong> #001</p>
-        <p><strong>Room/Hall:</strong> Room 101</p>
-        <p><strong>Check In:</strong> 2025-07-01</p>
-        <p><strong>Check Out:</strong> 2025-07-05</p>
-        <p><strong>Total:</strong> ₦250.00</p>
-        <p><strong>Status:</strong> <span class="text-warning fw-bold">Pending</span></p>
+        <p><strong>Booking No:</strong> #{{ booking.id|stringformat:"03d" }}</p>
+        <p><strong>Room/Hall:</strong> {{ booking.space.name }}</p>
+        <p><strong>Check In:</strong> {{ booking.check_in }}</p>
+        <p><strong>Check Out:</strong> {{ booking.check_out }}</p>
+        <p><strong>Total:</strong> ₦{{ booking.amount }}</p>
+        <p><strong>Status:</strong> 
+          {% if booking.status == 'pending' %}
+            <span class="text-warning fw-bold">Pending</span>
+          {% elif booking.status == 'approved' %}
+            <span class="text-success fw-bold">Approved</span>
+          {% elif booking.status == 'declined' %}
+            <span class="text-danger fw-bold">Declined</span>
+          {% endif %}
+        </p>
       </div>
       <div class="modal-footer">
         <button class="btn btn-outline-primary" onclick="printModal()">Print</button>
@@ -752,14 +673,42 @@
     </div>
   </div>
 </div>
+{% endfor %}
 
+<!-- Footer -->
 <footer id="footer" class="footer">
-    <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Thombys Place</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        Designed by <a href="#">Sunny-x-code</a>
-      </div>
+  <div class="container copyright text-center mt-4">
+    <p>© <span>Copyright</span> <strong class="px-1 sitename">Thombys Place</strong> <span>All Rights Reserved</span></p>
+    <div class="credits">
+      Designed by <a href="#">Sunny-x-code</a>
     </div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  const cancelBookingModal = document.getElementById('cancelBookingModal');
+  cancelBookingModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const bookingNumber = button.getAttribute('data-booking');
+    const bookingText = cancelBookingModal.querySelector('#booking-number');
+    bookingText.textContent = `Booking ${bookingNumber}`;
+  });
+
+  function printModal() {
+    const activeModal = document.querySelector('.modal.show .modal-content');
+    if (!activeModal) return;
+    const printWindow = window.open('', '', 'height=600,width=800');
+    printWindow.document.write('<html><head><title>Booking Receipt</title>');
+    printWindow.document.write('<style>body{font-family:sans-serif;padding:20px;} .watermark{opacity:0.9;}</style>');
+    printWindow.document.write('</head><body >');
+    printWindow.document.write(activeModal.innerHTML);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+  }
+</script>
+
     
 
   </footer>

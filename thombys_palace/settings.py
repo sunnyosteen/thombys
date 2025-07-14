@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'userprofile.apps.UserProfileConfig',
-    'bookings',
     'widget_tweaks',
+    'bookings',
 ]
 
 MIDDLEWARE = [

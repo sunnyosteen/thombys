@@ -35,7 +35,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import UserProfile
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from bookings.models import RoomBooking, HallBooking
 
 
 
@@ -178,13 +180,29 @@ def logout_view(request):
 
 
 
-
 @login_required
 def dashboard_view(request):
-    # You can pass any context data you want here
-    context = {
-        'user': request.user,
-        'message': 'Welcome to your dashboard!',
-    }
-    return render(request, 'userprofile/dashboard.html', context)
+    user = request.user
 
+    room_bookings = RoomBooking.objects.filter(user=user)
+    hall_bookings = HallBooking.objects.filter(user=user)
+    all_bookings = list(room_bookings) + list(hall_bookings)
+
+    total = len(all_bookings)
+    pending = sum(1 for b in all_bookings if b.status == 'pending')
+    approved = sum(1 for b in all_bookings if b.status == 'approved')
+    declined = sum(1 for b in all_bookings if b.status == 'declined')
+    cancelled = sum(1 for b in all_bookings if b.status == 'cancelled')
+    total_paid = sum(b.amount for b in all_bookings if b.status == 'approved')
+
+    context = {
+        'total': total,
+        'pending': pending,
+        'approved': approved,
+        'declined': declined,
+        'cancelled': cancelled,
+        'total_paid': total_paid,
+        'bookings': all_bookings,  # ✅ Add this line
+    }
+
+    return render(request, 'userprofile/dashboard.html', context)
