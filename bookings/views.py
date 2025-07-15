@@ -4,16 +4,16 @@ from django.contrib import messages
 from .models import Space, RoomBooking, HallBooking
 from .forms import BookingForm
 
-
 @login_required
 def room_list(request):
     rooms = Space.objects.filter(space_type='room', available=True)
-    return render(request, 'bookings/room_list.html', {'rooms': rooms})
+    halls = Space.objects.filter(space_type='hall', available=True)
+    return render(request, 'bookings/room_list.html', {'rooms': rooms, 'halls': halls})
 
 
 @login_required
-def checkout(request, space_id):  # ✅ Updated to use space_id
-    space = get_object_or_404(Space, id=space_id, space_type='room')
+def checkout(request, space_id):
+    space = get_object_or_404(Space, id=space_id)
 
     if request.method == 'POST':
         form = BookingForm(request.POST)
@@ -27,7 +27,7 @@ def checkout(request, space_id):  # ✅ Updated to use space_id
             booking.status = 'pending'
             booking.save()
             messages.success(request, "Booking submitted and is now pending approval.")
-            return redirect('userprofile:dashboard')  # ✅ Redirect to user profile dashboard
+            return redirect('userprofile:dashboard')
     else:
         form = BookingForm()
 
@@ -51,7 +51,7 @@ def cancel_booking(request, booking_id):
         booking.status = 'cancelled'
         booking.save()
         messages.warning(request, "Room booking cancelled.")
-    return redirect('userprofile:dashboard')  # ✅ consistent redirection
+    return redirect('userprofile:dashboard')
 
 
 @login_required
@@ -61,3 +61,31 @@ def delete_booking(request, booking_id):
         booking.delete()
         messages.success(request, "Room booking deleted.")
     return redirect('userprofile:dashboard')
+
+
+@login_required
+def process_booking(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user
+            space_id = request.POST.get('space_id')
+            booking.space = get_object_or_404(Space, id=space_id)
+            booking.amount = request.POST.get('calculated_amount')
+            booking.status = 'pending'  # ✅ fixed casing
+            booking.save()
+            request.session['booking_id'] = booking.id
+            return redirect('bookings:payment_page')
+    return redirect('bookings:room_list')
+
+
+
+# ✅ Use RoomBooking to fetch the booking
+@login_required
+def payment_page(request):
+    booking_id = request.session.get('booking_id')
+    if not booking_id:
+        return redirect('bookings:room_list')
+    booking = get_object_or_404(RoomBooking, id=booking_id, user=request.user)
+    return render(request, 'bookings/payment.html', {'booking': booking})

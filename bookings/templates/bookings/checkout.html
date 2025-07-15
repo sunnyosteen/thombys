@@ -1,69 +1,408 @@
-<div class="container py-4">
-  <h4 class="mb-4">Booking: {{ space.name }}</h4>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <div class="card mb-4 shadow-sm">
-    {% if space.image %}
-      <img src="{{ space.image.url }}" class="card-img-top" alt="{{ space.name }}">
-    {% endif %}
-    <div class="card-body">
-        <h5 class="card-title text-primary">{{ space.name }}</h5>
-      <p><strong>Type:</strong> {{ space.get_space_type_display }}</p>
-      <p><strong>Price per Day:</strong> ₦<span id="spacePrice">{{ space.price|default:"0.00" }}</span></p>
-      <p><strong>Days Selected:</strong> <span id="daysCount">0</span></p>
-      <p><strong>Total Amount:</strong> ₦<span id="totalAmount">0.00</span></p>
-    </div>
-  </div>
+  <!-- Bootstrap & Flatpickr -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 
-  <form method="POST" class="needs-validation" novalidate>
-    {% csrf_token %}
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <label for="id_check_in" class="form-label">Check-in</label>
-        {{ form.check_in }}
-      </div>
-      <div class="col-md-6">
-        <label for="id_check_out" class="form-label">Check-out</label>
-        {{ form.check_out }}
-      </div>
-    </div>
-    <input type="hidden" name="calculated_amount" id="calculatedAmountInput">
-    <button type="submit" class="btn btn-success">Confirm Booking</button>
-  </form>
-</div>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bs-body-bg);
+      color: var(--bs-body-color);
+    }
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const priceText = document.getElementById("spacePrice").textContent;
-    const price = parseFloat(priceText.replace(/[^\d.]/g, '')) || 0;
+    .flatpickr-input {
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      background-color: var(--bs-body-bg);
+      color: var(--bs-body-color);
+      transition: border-color 0.3s ease-in-out;
+      width: 100%;
+    }
 
-    const checkIn = document.getElementById("id_check_in");
-    const checkOut = document.getElementById("id_check_out");
-    const totalAmount = document.getElementById("totalAmount");
-    const daysCount = document.getElementById("daysCount");
-    const amountInput = document.getElementById("calculatedAmountInput");
+    .flatpickr-input:focus {
+      border-color: #4a6bff;
+      box-shadow: 0 0 0 0.2rem rgba(74, 107, 255, 0.25);
+      outline: none;
+    }
 
-    function calculateTotal() {
-      const inDate = new Date(checkIn.value);
-      const outDate = new Date(checkOut.value);
-      const timeDiff = outDate - inDate;
-      const days = timeDiff / (1000 * 3600 * 24);
+    .booking-summary-card {
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+      background-color: var(--bs-body-bg);
+      color: var(--bs-body-color);
+    }
 
-      if (!isNaN(days) && days > 0) {
-        const total = days * price;
-        daysCount.textContent = days;
-        totalAmount.textContent = total.toFixed(2);
-        amountInput.value = total.toFixed(2);
-      } else {
-        daysCount.textContent = '0';
-        totalAmount.textContent = '0.00';
-        amountInput.value = '';
+    .centered-image {
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      width: 100%;
+      height: auto;
+    }
+
+    .label-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+
+    .summary-total {
+      font-weight: bold;
+      border-top: 1px solid #ddd;
+      margin-top: 10px;
+      padding-top: 10px;
+    }
+
+    .btn-pay {
+      background-color: #4a6bff;
+      color: white;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 12px;
+      width: 100%;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-pay:hover {
+      background-color: #3a56d4;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(74, 107, 255, 0.3);
+    }
+
+    .form-section {
+      background-color: var(--bs-body-bg);
+      color: var(--bs-body-color);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+
+    .icon-label {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .icon-label i {
+      margin-right: 6px;
+      font-size: 1.1rem;
+      color: #4a6bff;
+    }
+
+    .icon-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .icon-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .booking-header {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4a6bff;
+      margin-bottom: 15px;
+    }
+
+    .booking-meta {
+      text-align: center;
+      margin-top: 10px;
+      color: var(--bs-body-color);
+    }
+
+    @media (max-width: 768px) {
+      .icon-wrapper {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .icon-group {
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .icon-group .icon-label {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .centered-image {
+        width: 100%;
+        max-height: 350px;
+        object-fit: cover;
       }
     }
 
-    checkIn.addEventListener('change', calculateTotal);
-    checkOut.addEventListener('change', calculateTotal);
+    @media (min-width: 769px) {
+      .icon-group .icon-label {
+        margin-bottom: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
 
-    // Run on load if dates are already filled
+<!-- Responsive Navbar with Dark Mode Toggle -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-primary" href="#">THOMBYS PLACE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Spaces</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">My Bookings</a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-sm btn-outline-secondary ms-3" id="themeToggle">
+            <i class="bi bi-moon-fill me-1"></i><span id="themeLabel">Dark Mode</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Booking Content -->
+<div class="container py-5">
+  <div class="row">
+    <!-- Left Column -->
+    <div class="col-lg-8 mb-4">
+      <div class="card shadow-sm mb-4 p-4">
+        <div class="booking-header">Booking: {{ space.name }} - {{ space.get_space_type_display }}</div>
+
+        <div class="icon-wrapper">
+          <div class="icon-group">
+            <div class="icon-label"><i class="bi bi-wifi"></i>Wi-Fi</div>
+            <div class="icon-label"><i class="bi bi-snow"></i>AC</div>
+            <div class="icon-label"><i class="bi bi-droplet"></i>Shower</div>
+          </div>
+          {% if space.image %}
+            <div class="px-3">
+              <img src="{{ space.image.url }}" class="centered-image img-fluid" alt="{{ space.name }}">
+            </div>
+          {% endif %}
+          <div class="icon-group">
+            <div class="icon-label"><i class="bi bi-lightbulb"></i>24/7 Light</div>
+            <div class="icon-label"><i class="bi bi-hospital"></i>Comfort</div>
+            <div class="icon-label"><i class="bi bi-shield-lock"></i>Secure</div>
+          </div>
+        </div>
+
+        <div class="booking-meta mt-3">
+          <div class="booking-header">{{ space.name }} - {{ space.get_space_type_display }}</div>
+          <p>Type: <strong>{{ space.get_space_type_display }}</strong></p>
+          <p>Price per Night: ₦<strong><span id="spacePrice">{{ space.price|default:"0.00" }}</span></strong></p>
+        </div>
+      </div>
+
+      <!-- Form Section -->
+      <!-- Form Section -->
+<form method="POST" action="{% url 'bookings:process_booking' %}" class="form-section" id="bookingForm">
+  <div id="dateError" class="text-danger mt-2 fw-semibold d-none">Check-out date must be after check-in date.</div>
+  {% csrf_token %}
+  <h5 class="mb-4 text-dark">Select Your Dates</h5>
+
+  <input type="hidden" name="space_id" value="{{ space.id }}">
+  <input type="hidden" name="calculated_amount" id="calculatedAmountInput">
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="id_check_in" class="form-label">Check-in</label>
+      {{ form.check_in }}
+      {% if form.check_in.errors %}
+        <div class="text-danger small mt-1">{{ form.check_in.errors.0 }}</div>
+      {% endif %}
+    </div>
+    <div class="col-md-6">
+      <label for="id_check_out" class="form-label">Check-out</label>
+      {{ form.check_out }}
+      {% if form.check_out.errors %}
+        <div class="text-danger small mt-1">{{ form.check_out.errors.0 }}</div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger mt-2">
+      {{ form.non_field_errors.0 }}
+    </div>
+  {% endif %}
+</form>
+
+    </div>
+
+    <!-- Right Column: Booking Summary -->
+    <div class="col-lg-4">
+      <div class="card booking-summary-card p-4">
+        <h5 class="mb-3 text-dark">Booking Summary</h5>
+
+        <div class="summary-item">
+          <span>Type:</span>
+          <span>{{ space.get_space_type_display }}</span>
+        </div>
+        <div class="summary-item">
+          <span>Price per Day:</span>
+          <span>₦{{ space.price|floatformat:2 }}</span>
+        </div>
+        <div class="summary-item">
+          <span>Check-in:</span>
+          <span id="summaryCheckIn">-</span>
+        </div>
+        <div class="summary-item">
+          <span>Check-out:</span>
+          <span id="summaryCheckOut">-</span>
+        </div>
+        <div class="summary-item">
+          <span>Days Selected:</span>
+          <span id="daysCount">0</span>
+        </div>
+        <div class="summary-item summary-total">
+          <span>Total Amount:</span>
+          <span>₦<span id="totalAmount">0.00</span></span>
+        </div>
+
+        <!-- Submit Button -->
+        <!-- Submit Button -->
+    <button type="submit" class="btn-pay mt-4" form="bookingForm">Confirm Booking</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const checkInInput = document.querySelector("input[name='check_in']");
+    const checkOutInput = document.querySelector("input[name='check_out']");
+    const priceText = document.getElementById("spacePrice")?.textContent || "0";
+    const price = parseFloat(priceText.replace(/[^\d.]/g, '')) || 0;
+
+    const totalAmountEl = document.getElementById("totalAmount");
+    const daysCountEl = document.getElementById("daysCount");
+    const amountInput = document.getElementById("calculatedAmountInput");
+    const summaryCheckIn = document.getElementById("summaryCheckIn");
+    const summaryCheckOut = document.getElementById("summaryCheckOut");
+    const dateError = document.getElementById("dateError");
+
+    const form = document.getElementById("bookingForm");
+
+    flatpickr(checkInInput, {
+      dateFormat: "Y-m-d",
+      minDate: "today",
+      onChange: calculateTotal
+    });
+
+    flatpickr(checkOutInput, {
+      dateFormat: "Y-m-d",
+      minDate: "today",
+      onChange: calculateTotal
+    });
+
+    checkInInput.addEventListener('change', calculateTotal);
+    checkOutInput.addEventListener('change', calculateTotal);
+
+    function calculateTotal() {
+      const inDateStr = checkInInput.value;
+      const outDateStr = checkOutInput.value;
+
+      if (summaryCheckIn) summaryCheckIn.textContent = inDateStr || "-";
+      if (summaryCheckOut) summaryCheckOut.textContent = outDateStr || "-";
+
+      if (inDateStr && outDateStr) {
+        const inDate = new Date(inDateStr);
+        const outDate = new Date(outDateStr);
+        const timeDiff = outDate.getTime() - inDate.getTime();
+        const days = timeDiff / (1000 * 3600 * 24);
+
+        if (!isNaN(days) && days > 0) {
+          const total = days * price;
+          daysCountEl.textContent = days;
+          totalAmountEl.textContent = total.toFixed(2);
+          amountInput.value = total.toFixed(2);
+          dateError.classList.add("d-none");
+          return true;
+        } else {
+          daysCountEl.textContent = '0';
+          totalAmountEl.textContent = '0.00';
+          amountInput.value = '';
+          dateError.classList.remove("d-none");
+          return false;
+        }
+      }
+
+      daysCountEl.textContent = '0';
+      totalAmountEl.textContent = '0.00';
+      amountInput.value = '';
+      return false;
+    }
+
+    form.addEventListener("submit", function (e) {
+      const valid = calculateTotal();
+      if (!valid) {
+        e.preventDefault();
+        dateError.classList.remove("d-none");
+      }
+    });
+
     calculateTotal();
   });
 </script>
+<script>
+  const toggleBtn = document.getElementById('themeToggle');
+  const html = document.documentElement;
+  const themeLabel = document.getElementById('themeLabel');
+
+  const currentTheme = localStorage.getItem('theme');
+  if (currentTheme === 'dark') {
+    html.setAttribute('data-bs-theme', 'dark');
+    themeLabel.innerText = 'Light Mode';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isDark = html.getAttribute('data-bs-theme') === 'dark';
+    html.setAttribute('data-bs-theme', isDark ? 'light' : 'dark');
+    themeLabel.innerText = isDark ? 'Dark Mode' : 'Light Mode';
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  });
+</script>
+
+</body>
+</html>

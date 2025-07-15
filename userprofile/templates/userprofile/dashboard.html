@@ -423,51 +423,49 @@
   <h5 class="text-secondary fw-bold mb-3">Recent Bookings</h5>
 
   <!-- Scrollable table container with styling -->
-  <div class="table-scroll-container shadow-sm border rounded" style="overflow-x: auto;">
-    <div class="table-responsive table-scroll-content">
-      <table class="table table-hover text-center min-width-table table-bordered">
-  <thead class="table-light">
-    <tr>
-      <th scope="col">Booking No.</th>
-      <th scope="col">Room/Hall</th>
-      <th scope="col">Check In</th>
-      <th scope="col">Check Out</th>
-      <th scope="col">Total Amount</th>
-      <th scope="col">Status</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for booking in bookings %}
-  <tr class="table-{{ booking.status }}">
-    <th scope="row">#{{ booking.id|stringformat:"03d" }}</th>
-    <td>{{ booking.space.name }}</td>
-    <td>{{ booking.check_in }}</td>
-    <td>{{ booking.check_out }}</td>
-    <td>₦{{ booking.amount }}</td>
-    <td><span class="text-warning fw-bold">{{ booking.status|title }}</span></td>
-    <td>
-      {% if booking.status == 'pending' %}
-  <button class="btn btn-sm btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#cancelModal"
-          data-booking="#{{ booking.id|stringformat:"03d" }}">Cancel</button>
-{% else %}
-  <span class="text-muted" title="No further actions allowed">
-    <i class="bi bi-lock-fill"></i>
-  </span>
-{% endif %}
-
-  </tr>
-  {% empty %}
-  <tr>
-    <td colspan="7" class="text-center text-muted">No bookings yet.</td>
-  </tr>
-  {% endfor %}
-</tbody>
-
-</table>
-
+<div class="table-scroll-container shadow-sm border rounded" style="overflow-x: auto;">
+  <div class="table-responsive table-scroll-content">
+    <table class="table table-hover text-center min-width-table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Booking No.</th>
+          <th scope="col">Room/Hall</th>
+          <th scope="col">Check In</th>
+          <th scope="col">Check Out</th>
+          <th scope="col">Total Amount</th>
+          <th scope="col">Status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in bookings %}
+        <tr class="table-{{ booking.status|lower }}">
+          <th scope="row">#{{ booking.id|stringformat:"03d" }}</th>
+          <td>{{ booking.space.name }}</td>
+          <td>{{ booking.check_in }}</td>
+          <td>{{ booking.check_out }}</td>
+          <td>₦{{ booking.amount }}</td>
+          <td><span class="text-warning fw-bold">{{ booking.status|title }}</span></td>
+          <td>
+            {% if booking.status|lower == 'pending' %}
+              <button class="btn btn-sm btn-danger"
+                      data-bs-toggle="modal"
+                      data-bs-target="#cancelModal"
+                      data-booking="#{{ booking.id|stringformat:"03d" }}">Cancel</button>
+            {% else %}
+              <span class="text-muted" title="No further actions allowed">
+                <i class="bi bi-lock-fill"></i>
+              </span>
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" class="text-center text-muted">No bookings yet.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 <!-- DELETE MODAL  -->
  <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
   <div class="modal-dialog">
