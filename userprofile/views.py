@@ -40,56 +40,41 @@ from django.shortcuts import render
 from bookings.models import RoomBooking, HallBooking
 
 
-
-
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
+            email = form.cleaned_data.get('email')
+
+            # Prevent duplicate email
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'An account with this email already exists.')
+                return render(request, 'userprofile/register.html', {'form': form})
+
             try:
                 user = form.save(commit=False)
-                user.username = form.cleaned_data['username']  # Use chosen username
+                user.username = form.cleaned_data['username']
                 user.set_password(form.cleaned_data['password'])
-                user.is_active = False
+                user.email = email
+                user.is_active = True  # ✅ Allow login immediately
                 user.save()
 
-                # Create or get user profile
+                # Create user profile
                 user_profile = user.profile
                 user_profile.first_name = form.cleaned_data.get('first_name', '')
                 user_profile.last_name = form.cleaned_data.get('last_name', '')
                 user_profile.save()
 
-                token = default_token_generator.make_token(user)
-                uid = urlsafe_base64_encode(force_bytes(user.pk))
-
-                current_site = get_current_site(request)
-                confirm_url = reverse('userprofile:confirm_email', kwargs={'uidb64': uid, 'token': token})
-                full_link = f"http://{current_site.domain}{confirm_url}"
-
-                context = {
-                    'user': user,
-                    'confirm_link': full_link,
-                }
-
-                subject = 'Complete Your Registration'
-                from_email = 'noreply@yourdomain.com'
-                to_email = user.email
-
-                html_message = render_to_string('userprofile/registration_mail.html', context)
-                text_message = render_to_string('userprofile/registration_mail.txt', context)
-
-                email = EmailMultiAlternatives(subject, text_message, from_email, [to_email])
-                email.attach_alternative(html_message, "text/html")
-                email.send()
-
-                messages.info(request, 'Check your email to confirm your account.')
-                return redirect('userprofile:login')  # <-- this prevents re-submission on refresh
+                messages.success(request, 'Registration successful. You can now log in.')
+                return redirect('userprofile:login')
 
             except IntegrityError:
                 messages.error(request, 'An account with this email already exists.')
             except Exception as e:
                 messages.error(request, 'Something went wrong. Please try again later.')
                 print(f"Error during registration: {e}")
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
         form = UserRegistrationForm()
 
@@ -179,7 +164,6 @@ def logout_view(request):
 
 
 
-
 @login_required
 def dashboard_view(request):
     user = request.user
@@ -189,11 +173,11 @@ def dashboard_view(request):
     all_bookings = list(room_bookings) + list(hall_bookings)
 
     total = len(all_bookings)
-    pending = sum(1 for b in all_bookings if b.status == 'pending')
-    approved = sum(1 for b in all_bookings if b.status == 'approved')
-    declined = sum(1 for b in all_bookings if b.status == 'declined')
-    cancelled = sum(1 for b in all_bookings if b.status == 'cancelled')
-    total_paid = sum(b.amount for b in all_bookings if b.status == 'approved')
+    pending = sum(1 for b in all_bookings if b.status.lower() == 'pending')
+    approved = sum(1 for b in all_bookings if b.status.lower() == 'approved')
+    declined = sum(1 for b in all_bookings if b.status.lower() == 'declined')
+    cancelled = sum(1 for b in all_bookings if b.status.lower() == 'cancelled')
+    total_paid = sum(b.amount for b in all_bookings if b.status.lower() == 'approved')
 
     context = {
         'total': total,
@@ -202,7 +186,7 @@ def dashboard_view(request):
         'declined': declined,
         'cancelled': cancelled,
         'total_paid': total_paid,
-        'bookings': all_bookings,  # ✅ Add this line
+        'bookings': all_bookings,
     }
 
     return render(request, 'userprofile/dashboard.html', context)

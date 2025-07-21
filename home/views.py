@@ -33,16 +33,16 @@ def contact(request):
 
 
 
-# Function-based view to render the About page
-def room(request):
-    return render(request, 'home/room.html')
+# # Function-based view to render the About page
+# def room(request):
+#     return render(request, 'home/room.html')
 
 
 
 
-# Function-based view to render the About page
-def hall(request):
-    return render(request, 'home/hall.html')
+# # Function-based view to render the About page
+# def hall(request):
+#     return render(request, 'home/hall.html')
 
 
 

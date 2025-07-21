@@ -149,13 +149,13 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item pt-2"  href="{% url 'hall' %}">Hall Booking</a>
+                  <a class="dropdown-item pt-2"  href="{% url 'bookings:room_list' %}">Hall Booking</a>
                 </li>
                 <li>
-                  <a class="dropdown-item"  href="{% url 'room' %}">Room Booking</a>
+                  <a class="dropdown-item"  href="{% url 'bookings:room_list' %}">Room Booking</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="email.html">Special Packages</a>
+                  <a class="dropdown-item" href="{% url 'bookings:room_list' %}">Special Packages</a>
                 </li>
                 <!-- <li><a class="dropdown-item" href="elements.html">Elements</a></li><li><a class="dropdown-item" href="landing.html">Landing Page</a></li><li><a class="dropdown-item" href="error.html">Error Page</a></li> -->
               </ul>

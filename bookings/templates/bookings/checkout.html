@@ -10,6 +10,16 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Load Font Awesome (CDN) -->
+<!-- Add this in your <head> section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+ 
+
+  
+
 
   <style>
     body {
@@ -136,6 +146,15 @@
       color: var(--bs-body-color);
     }
 
+    .booking-header,i{
+  color: #ffc107;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+
     @media (max-width: 768px) {
       .icon-wrapper {
         flex-direction: column;
@@ -165,20 +184,97 @@
         margin-bottom: 24px;
       }
     }
+    
   </style>
+
+<style>
+  /* Import font */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  /* Global font and uppercase */
+  .navbar-brand {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+  }
+
+  /* Yellow for THOMBYS and icon */
+  .thombys-text,
+  .icon-yellow {
+    color: #ffc107 !important;
+    font-weight: 600;
+  }
+
+  /* EVENT CENTER base style */
+  .event_center {
+    color: white !important;
+    transition: color 0.3s ease;
+  }
+
+  .nav-scrolled .event_center {
+    color: #333 !important;
+  }
+
+  /* LODGING always yellow */
+  .event_center .text-yellow {
+    color: #ffc107 !important;
+  }
+
+  /* PLACE dynamic color */
+  #place {
+    transition: color 0.3s ease;
+  }
+
+  [data-theme="light"] #place.scrolled {
+    color: #333 !important;
+  }
+
+  [data-theme="dark"] #place {
+    color: white !important;
+  }
+</style>
+
+        <script>
+          // JavaScript to change color when scrolling
+          window.addEventListener('scroll', function() {
+            var placeSpan = document.getElementById('place');
+            var isDarkMode = document.documentElement.getAttribute('data-theme') === 'white'; // Check if dark mode is active
+            // Check if the page has been scrolled down by a certain amount
+            if (window.scrollY > 50 && !isDarkMode) { // Only change color if not in dark mode
+              placeSpan.classList.add('scrolled'); // Add dark color in light mode
+            } else {
+              placeSpan.classList.remove('scrolled'); // Remove dark color when scrolled back up
+            }
+          });
+        </script>
+        <!-- IMPORTANT CSS FOR PLACE TEXT END -->
+
 </head>
 <body>
 
 <!-- Responsive Navbar with Dark Mode Toggle -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom shadow-sm">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold text-primary" href="#">THOMBYS PLACE</a>
+<a class="navbar-brand pe-xl-5 pe-lg-4 d-flex flex-column align-items-center" href="{% url 'home' %}">
+  <span class="text-center">
+    <span class="thombys-text">THOMBYS</span> <span id="place">PLACE</span>
+  </span>
+
+  <span class="d-flex flex-column align-items-center mt-1" style="font-weight: 100;">
+    <i class="fas fa-hand-peace icon-yellow" style="font-size: 2rem; margin-bottom: 0.5rem; margin-top: 0.5rem;"></i>
+
+    <span class="event_center" style="font-size: 1rem; font-weight: normal; margin-top: 0.3rem; color: inherit !important;">
+      EVENT CENTER & <span class="text-yellow">LODGING</span>
+    </span>
+  </span>
+</a>
+
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link active" href="#">Home</a>
         </li>
         <li class="nav-item">
@@ -186,7 +282,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">My Bookings</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <button class="btn btn-sm btn-outline-secondary ms-3" id="themeToggle">
             <i class="bi bi-moon-fill me-1"></i><span id="themeLabel">Dark Mode</span>
@@ -203,7 +299,10 @@
     <!-- Left Column -->
     <div class="col-lg-8 mb-4">
       <div class="card shadow-sm mb-4 p-4">
-        <div class="booking-header">Booking: {{ space.name }} - {{ space.get_space_type_display }}</div>
+       <div class="booking-header">
+  Booking: {{ space.name }} - {{ space.get_space_type_display }}
+</div>
+
 
         <div class="icon-wrapper">
           <div class="icon-group">
@@ -225,7 +324,7 @@
 
         <div class="booking-meta mt-3">
           <div class="booking-header">{{ space.name }} - {{ space.get_space_type_display }}</div>
-          <p>Type: <strong>{{ space.get_space_type_display }}</strong></p>
+          <p>Space: <strong>{{ space.get_space_type_display }}</strong></p>
           <p>Price per Night: ₦<strong><span id="spacePrice">{{ space.price|default:"0.00" }}</span></strong></p>
         </div>
       </div>
@@ -233,22 +332,26 @@
       <!-- Form Section -->
       <!-- Form Section -->
 <form method="POST" action="{% url 'bookings:process_booking' %}" class="form-section" id="bookingForm">
-  <div id="dateError" class="text-danger mt-2 fw-semibold d-none">Check-out date must be after check-in date.</div>
   {% csrf_token %}
   <h5 class="mb-4 text-dark">Select Your Dates</h5>
 
   <input type="hidden" name="space_id" value="{{ space.id }}">
   <input type="hidden" name="calculated_amount" id="calculatedAmountInput">
 
-  <div class="row mb-3">
-    <div class="col-md-6">
+  <div id="dateError" class="text-danger mt-2 fw-semibold d-none">
+    Check-out date must be after check-in date.
+  </div>
+
+  <div class="row gy-3 mb-3">
+    <div class="col-12 col-md-6">
       <label for="id_check_in" class="form-label">Check-in</label>
       {{ form.check_in }}
       {% if form.check_in.errors %}
         <div class="text-danger small mt-1">{{ form.check_in.errors.0 }}</div>
       {% endif %}
     </div>
-    <div class="col-md-6">
+
+    <div class="col-12 col-md-6">
       <label for="id_check_out" class="form-label">Check-out</label>
       {{ form.check_out }}
       {% if form.check_out.errors %}
@@ -256,6 +359,26 @@
       {% endif %}
     </div>
   </div>
+
+  {% if space.space_type == 'hall' %}
+    <div class="row gy-3 mb-3">
+      <div class="col-12 col-md-6">
+        <label for="id_event_name" class="form-label">Event Name</label>
+        {{ form.event_name }}
+        {% if form.event_name.errors %}
+          <div class="text-danger small mt-1">{{ form.event_name.errors.0 }}</div>
+        {% endif %}
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label for="id_event_date" class="form-label">Event Start</label>
+        {{ form.event_date }}
+        {% if form.event_date.errors %}
+          <div class="text-danger small mt-1">{{ form.event_date.errors.0 }}</div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
 
   {% if form.non_field_errors %}
     <div class="alert alert-danger mt-2">
@@ -272,8 +395,8 @@
         <h5 class="mb-3 text-dark">Booking Summary</h5>
 
         <div class="summary-item">
-          <span>Type:</span>
-          <span>{{ space.get_space_type_display }}</span>
+          <span>Space:</span>
+          <span>{{ space.name }} - {{ space.get_space_type_display }}</span>
         </div>
         <div class="summary-item">
           <span>Price per Day:</span>
@@ -304,87 +427,130 @@
     </div>
   </div>
 </div>
+<footer class="bg-dark text-white py-4 mt-5 text-center" style="font-family: 'Poppins', sans-serif;">
+  <div class="container text-uppercase">
+    <nav class="mb-2 small" aria-label="Footer navigation">
+      <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+      <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+    </nav>
+    <div class="small">
+      &copy; {{ now|date:"Y" }} <span class="thombys-text">Thombys</span>. Designed by
+      <a href="https://sunny-x-codes.example" target="_blank" rel="noopener" class="text-yellow text-decoration-none">Sunny-x-codes</a>
+    </div>
+  </div>
+</footer>
+
+
+
+<style>
+  .thombys-text {
+  color: #ffc107 !important;
+  font-weight: 600;
+}
+
+.text-yellow {
+  color: #ffc107 !important;
+}
+
+</style>
+
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const checkInInput = document.querySelector("input[name='check_in']");
-    const checkOutInput = document.querySelector("input[name='check_out']");
-    const priceText = document.getElementById("spacePrice")?.textContent || "0";
-    const price = parseFloat(priceText.replace(/[^\d.]/g, '')) || 0;
+document.addEventListener("DOMContentLoaded", function () {
+  const checkInInput = document.querySelector("input[name='check_in']");
+  const checkOutInput = document.querySelector("input[name='check_out']");
+  const eventDateInput = document.querySelector("input[name='event_date']");
+  const priceText = document.getElementById("spacePrice")?.textContent || "0";
+  const price = parseFloat(priceText.replace(/[^\d.]/g, '')) || 0;
 
-    const totalAmountEl = document.getElementById("totalAmount");
-    const daysCountEl = document.getElementById("daysCount");
-    const amountInput = document.getElementById("calculatedAmountInput");
-    const summaryCheckIn = document.getElementById("summaryCheckIn");
-    const summaryCheckOut = document.getElementById("summaryCheckOut");
-    const dateError = document.getElementById("dateError");
+  const totalAmountEl = document.getElementById("totalAmount");
+  const daysCountEl = document.getElementById("daysCount");
+  const amountInput = document.getElementById("calculatedAmountInput");
+  const summaryCheckIn = document.getElementById("summaryCheckIn");
+  const summaryCheckOut = document.getElementById("summaryCheckOut");
+  const dateError = document.getElementById("dateError");
 
-    const form = document.getElementById("bookingForm");
+  const form = document.getElementById("bookingForm");
 
-    flatpickr(checkInInput, {
-      dateFormat: "Y-m-d",
-      minDate: "today",
-      onChange: calculateTotal
-    });
+  // Initialize flatpickr for check-in and check-out
+  flatpickr(checkInInput, {
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    onChange: calculateTotal
+  });
 
-    flatpickr(checkOutInput, {
-      dateFormat: "Y-m-d",
-      minDate: "today",
-      onChange: calculateTotal
-    });
+  flatpickr(checkOutInput, {
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    onChange: calculateTotal
+  });
 
-    checkInInput.addEventListener('change', calculateTotal);
-    checkOutInput.addEventListener('change', calculateTotal);
+  // Initialize flatpickr for event date with same format and minDate as check-in
+  flatpickr(eventDateInput, {
+    dateFormat: "Y-m-d",
+    minDate: "today", // You can adjust this if event dates need to be later than check-in date
+    onChange: calculateTotal
+  });
 
-    function calculateTotal() {
-      const inDateStr = checkInInput.value;
-      const outDateStr = checkOutInput.value;
+  // Event listeners to calculate total when dates change
+  checkInInput.addEventListener('change', calculateTotal);
+  checkOutInput.addEventListener('change', calculateTotal);
+  eventDateInput.addEventListener('change', calculateTotal);
 
-      if (summaryCheckIn) summaryCheckIn.textContent = inDateStr || "-";
-      if (summaryCheckOut) summaryCheckOut.textContent = outDateStr || "-";
+  function calculateTotal() {
+    const inDateStr = checkInInput.value;
+    const outDateStr = checkOutInput.value;
 
-      if (inDateStr && outDateStr) {
-        const inDate = new Date(inDateStr);
-        const outDate = new Date(outDateStr);
-        const timeDiff = outDate.getTime() - inDate.getTime();
-        const days = timeDiff / (1000 * 3600 * 24);
+    if (summaryCheckIn) summaryCheckIn.textContent = inDateStr || "-";
+    if (summaryCheckOut) summaryCheckOut.textContent = outDateStr || "-";
 
-        if (!isNaN(days) && days > 0) {
-          const total = days * price;
-          daysCountEl.textContent = days;
-          totalAmountEl.textContent = total.toFixed(2);
-          amountInput.value = total.toFixed(2);
-          dateError.classList.add("d-none");
-          return true;
-        } else {
-          daysCountEl.textContent = '0';
-          totalAmountEl.textContent = '0.00';
-          amountInput.value = '';
-          dateError.classList.remove("d-none");
-          return false;
-        }
+    if (inDateStr && outDateStr) {
+      const inDate = new Date(inDateStr);
+      const outDate = new Date(outDateStr);
+      const timeDiff = outDate.getTime() - inDate.getTime();
+      const days = timeDiff / (1000 * 3600 * 24);
+
+      if (!isNaN(days) && days > 0) {
+        const total = days * price;
+        daysCountEl.textContent = days;
+        totalAmountEl.textContent = total.toFixed(2);
+        amountInput.value = total.toFixed(2);
+        dateError.classList.add("d-none");
+        return true;
+      } else {
+        daysCountEl.textContent = '0';
+        totalAmountEl.textContent = '0.00';
+        amountInput.value = '';
+        dateError.classList.remove("d-none");
+        return false;
       }
-
-      daysCountEl.textContent = '0';
-      totalAmountEl.textContent = '0.00';
-      amountInput.value = '';
-      return false;
     }
 
-    form.addEventListener("submit", function (e) {
-      const valid = calculateTotal();
-      if (!valid) {
-        e.preventDefault();
-        dateError.classList.remove("d-none");
-      }
-    });
+    daysCountEl.textContent = '0';
+    totalAmountEl.textContent = '0.00';
+    amountInput.value = '';
+    return false;
+  }
 
-    calculateTotal();
+  // Handle form submission with validation
+  form.addEventListener("submit", function (e) {
+    const valid = calculateTotal();
+    if (!valid) {
+      e.preventDefault();
+      dateError.classList.remove("d-none");
+    }
   });
+
+  // Initial calculation to populate default values
+  calculateTotal();
+});
+
 </script>
+
+
 <script>
   const toggleBtn = document.getElementById('themeToggle');
   const html = document.documentElement;

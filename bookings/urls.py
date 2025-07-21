@@ -3,7 +3,7 @@ from . import views
 
 app_name = 'bookings'
 urlpatterns = [
-    path('', views.room_list, name='room_list'),
+    path('room_list', views.room_list, name='room_list'),
     path('checkout/<int:space_id>/', views.checkout, name='checkout'),  # ✅ use space_id
     # urls.py
     path('checkout/process/', views.process_booking, name='process_booking'),

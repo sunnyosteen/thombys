@@ -2,23 +2,23 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Make Payment - THOMBYS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
 
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: "Segoe UI", sans-serif;
       background-color: var(--bs-body-bg);
       color: var(--bs-body-color);
     }
 
     .card {
       border-radius: 1rem;
-      box-shadow: 0 0 20px rgba(0,0,0,0.08);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
       background-color: var(--bs-body-bg);
       color: var(--bs-body-color);
     }
@@ -29,15 +29,25 @@
       padding: 15px;
       margin-bottom: 15px;
       background-color: var(--bs-body-bg);
+      text-align: center;
+    }
+
+    .bank-logo {
+      height: 60px;
+      width: auto;
+      margin-bottom: 10px;
     }
 
     .copy-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
       border: none;
       background-color: #4a6bff;
       color: white;
-      padding: 6px 12px;
       border-radius: 8px;
       font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     .copy-btn:hover {
@@ -57,65 +67,149 @@
     .btn-dashboard:hover {
       background-color: #157347;
     }
+
+    #cookieConsent {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: #fff;
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 1050;
+      display: none;
+      max-width: 90%;
+      font-size: 0.9rem;
+    }
+
+    #cookieConsent button {
+      background: #4a6bff;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      margin-left: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    #cookieConsent button:hover {
+      background: #3a56d4;
+    }
+
+    @media (max-width: 576px) {
+      .bank-option {
+        padding: 20px 10px;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card p-4">
+          <h4 class="mb-3 text-center text-primary fw-bold">Complete Your Payment</h4>
 
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-6">
-      <div class="card p-4">
-        <h4 class="mb-3 text-center text-primary fw-bold">Complete Your Payment</h4>
-        <p class="text-center">Your booking for <strong>{{ booking.space.name }}</strong> is saved and pending payment.</p>
+          <div class="text-center p-3 mb-4 border rounded" style="background-color: #f8f9fa;">
+            <p class="mb-1">
+              Hello <strong>
+                {% if booking.user.profile.first_name or booking.user.profile.last_name %}
+                  {{ booking.user.profile.first_name|capfirst }} {{ booking.user.profile.last_name|capfirst }}
+                {% else %}
+                  {{ booking.user.username|capfirst }}
+                {% endif %}
+              </strong>,
+            </p>
 
-        <div class="mb-3">
-          <p><strong>Booking Code:</strong> {{ booking.id }}</p>
-          <p><strong>Total Amount:</strong> ₦{{ booking.amount }}</p>
+            <p class="mb-1">
+              Your booking for 
+              <strong>{{ booking.space.get_space_type_display }}: {{ booking.space.name }}-{{ booking.space.get_space_type_display }}</strong>
+            </p>
+
+            {% if booking_type == 'room' %}
+              <p class="mb-1">
+                from <strong>{{ booking.check_in|date:"M d, Y" }}</strong> 
+                to <strong>{{ booking.check_out|date:"M d, Y" }}</strong>
+              </p>
+              <p class="mb-0">
+                <p class="mb-0">
+  ({{ booking.days }} day{{ booking.days|pluralize }}) is saved and pending payment.
+</p>
+
+              </p>
+            {% elif booking_type == 'hall' %}
+              <p class="mb-1">
+                for event <strong>{{ booking.event_name }}</strong> on 
+                <strong>{{ booking.event_date|date:"M d, Y" }}</strong>
+              </p>
+              <p class="mb-0">Your event is reserved and pending payment.</p>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <p><strong>Booking Code:</strong> {{ booking.id }}</p>
+            <p><strong>Total Amount:</strong> ₦{{ booking.amount }}</p>
+          </div>
+
+          <h5 class="mb-3">Transfer to This Account:</h5>
+          <div class="bank-option">
+            <img src="{% static 'assets/images/moniepoint.png' %}" alt="Moniepoint Logo" class="bank-logo" />
+            <div class="bank-name">Moniepoint</div>
+            <div class="account-details">
+              <p class="mb-1"><strong>Account Name:</strong> Onungwa Onungwata</p>
+              <p class="mb-1"><strong>Account Number:</strong> <span id="moniepoint-account">5030587416</span></p>
+              <button class="copy-btn" onclick="copyToClipboard('moniepoint-account')">Copy Account Number</button>
+            </div>
+          </div>
+
+          <div class="alert alert-warning text-center text-uppercase py-4" style="font-family: 'Poppins', sans-serif">
+            <p class="mb-2">
+              <strong>After completing your payment, please wait while we confirm it.</strong><br />
+              You’ll receive confirmation once verified.
+            </p>
+            <p class="mb-0">
+              Submit a screenshot of your payment to our support via WhatsApp:
+              <a href="https://wa.me/2348012345678" target="_blank" rel="noopener" class="text-decoration-none text-success fw-bold">
+                <i class="bi bi-whatsapp"></i> Message Support
+              </a>
+            </p>
+          </div>
+
+          <a href="{% url 'userprofile:dashboard' %}" class="btn btn-dashboard mt-3">Go to Dashboard</a>
         </div>
-
-        <h5 class="mb-3">Transfer to Any of These Accounts:</h5>
-
-        <!-- Bank 1 -->
-        <div class="bank-option">
-          <p><strong>Bank:</strong> First Bank</p>
-          <p><strong>Account Name:</strong> THOMBYS PLACE</p>
-          <p><strong>Account Number:</strong> <span id="firstbank">1234567890</span></p>
-          <button class="copy-btn" onclick="copyToClipboard('firstbank')">Copy</button>
-        </div>
-
-        <!-- Bank 2 -->
-        <div class="bank-option">
-          <p><strong>Bank:</strong> Access Bank</p>
-          <p><strong>Account Name:</strong> THOMBYS PLACE</p>
-          <p><strong>Account Number:</strong> <span id="accessbank">1122334455</span></p>
-          <button class="copy-btn" onclick="copyToClipboard('accessbank')">Copy</button>
-        </div>
-
-        <!-- Bank 3 -->
-        <div class="bank-option">
-          <p><strong>Bank:</strong> OPay</p>
-          <p><strong>Account Name:</strong> THOMBYS PLACE</p>
-          <p><strong>Account Number:</strong> <span id="opaybank">9876543210</span></p>
-          <button class="copy-btn" onclick="copyToClipboard('opaybank')">Copy</button>
-        </div>
-
-        <div class="alert alert-info mt-4">
-          After completing your payment, please wait while we confirm it. You’ll receive confirmation once verified.
-        </div>
-
-        <a href="{% url 'userprofile:dashboard' %}" class="btn btn-dashboard mt-3">Go to Dashboard</a>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  function copyToClipboard(id) {
-    const text = document.getElementById(id).textContent;
-    navigator.clipboard.writeText(text).then(() => {
-      alert("Account number copied: " + text);
-    });
-  }
-</script>
+  <!-- Cookie Consent -->
+  <div id="cookieConsent">
+    We use cookies to ensure your data is protected and provide you with the best experience.
+    <button id="acceptCookies">Accept</button>
+  </div>
+
+  <script>
+    function copyToClipboard(id) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Account number copied: " + text);
+      });
+    }
+
+    window.onload = () => {
+      if (!localStorage.getItem("cookieAccepted")) {
+        document.getElementById("cookieConsent").style.display = "block";
+      }
+    };
+
+    document.getElementById("acceptCookies").onclick = () => {
+      localStorage.setItem("cookieAccepted", "true");
+      document.getElementById("cookieConsent").style.display = "none";
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>

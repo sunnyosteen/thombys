@@ -51,13 +51,13 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item pt-2" href="{% url 'hall' %}">Hall Booking</a>
+                  <a class="dropdown-item pt-2" href="{% url 'bookings:room_list' %}">Hall Booking</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="{% url 'room' %}">Room Booking</a>
+                  <a class="dropdown-item" href="{% url 'bookings:room_list' %}">Room Booking</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="email.html">Special Packages</a>
+                  <a class="dropdown-item" href="{% url 'bookings:room_list' %}">Special Packages</a>
                 </li>
                 <!-- <li><a class="dropdown-item" href="elements.html">Elements</a></li><li><a class="dropdown-item" href="landing.html">Landing Page</a></li><li><a class="dropdown-item" href="error.html">Error Page</a></li> -->
               </ul>
@@ -393,7 +393,7 @@
   </div>
   <!--//bottom-3-grids-->
   <!-- /home-page-video-popup-->
-  <section class="w3l-index5 py-5" id="video">
+  <!-- <section class="w3l-index5 py-5" id="video">
     <div class="container py-5">
       <div class="history-info align-self text-center py-md-5">
         <div class="position-relative py-sm-5">
@@ -402,77 +402,15 @@
               <span class="fa fa-play"></span>
             </span>
           </a>
-          <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
           <div id="small-dialog1" class="zoom-anim-dialog mfp-hide">
             <iframe src="https://archive.org/embed/standard_202505" width="640" height="480" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
           </div>
         </div>
       </div>
-  </section>
+  </section> -->
   <!-- //home-page-video-popup-->
   <!--/w3-grids-->
-  <section class="w3l-passion-mid-sec py-5">
-    <div class="container py-md-5 py-3">
-      <div class="container">
-        <div class="row w3l-passion-mid-grids">
-          <div class="col-lg-6 passion-grid-item-info pe-lg-5 mb-lg-0 mb-5">
-            <!-- Image with custom styling -->
-            <div class="custom-img-wrapper">
-              <!-- <img src="{% static 'assets/images/thombys0.webp'' %}" class="custom-img" alt="Thomys Place Event & Booking" srcset="{% static 'assets/images/thombys0.webp' %} 1x, {% static 'assets/images/thombys0@2x.webp' %} 2x, {% static 'assets/images/thombys0@3x.webp' %} 3x"> -->
-              <div class="dark-blue-glass"></div>
-            </div>
-          </div>
-          <div class="col-lg-6 w3hny-passion-item w3l-content-8">
-            <h6 class="title-subw3hny mb-1">What We Offer</h6>
-            <h3 class="title-w3l mb-3">Thomys Place Event & Booking with Luxury Interiors</h3>
-            <p class="mb-5">At Thomys Place, we offer an unforgettable experience with our luxury event spaces, fully equipped rooms, and world-class services designed to make your event and stay exceptional. Whether you're hosting a corporate gathering, wedding, or special occasion, our venue provides the perfect setting.</p>
-            <ul class="w3-list-icons-grids">
-              <li class="icon-list-item-gd">
-                <div class="icon-gd">
-                  <i aria-hidden="true" class="fas fa-hotel"></i>
-                </div>
-                <div class="icon-inf">
-                  <h5>Event Spaces</h5>
-                  <p class="text-para">Luxuriously designed halls for every occasion, from weddings to corporate events.</p>
-                </div>
-              </li>
-              <li class="icon-list-item-gd">
-                <div class="icon-gd">
-                  <i aria-hidden="true" class="fas fa-door-open"></i>
-                </div>
-                <div class="icon-inf">
-                  <h5>Booking Rooms</h5>
-                  <p class="text-para">Elegant, fully furnished rooms designed for comfort and relaxation during your stay.</p>
-                </div>
-              </li>
-              <li class="icon-list-item-gd">
-                <div class="icon-gd">
-                  <i aria-hidden="true" class="fas fa-industry"></i>
-                </div>
-                <div class="icon-inf">
-                  <h5>Corporate Events</h5>
-                  <p class="text-para">Perfect venue for conferences, seminars, and business gatherings with state-of-the-art facilities.</p>
-                </div>
-              </li>
-              <li class="icon-list-item-gd">
-                <div class="icon-gd">
-                  <i aria-hidden="true" class="fas fa-building"></i>
-                </div>
-                <div class="icon-inf">
-                  <h5>Celebrations & Weddings</h5>
-                  <p class="text-para">Host the perfect celebration, whether it's a wedding, anniversary, or special event, with unmatched elegance and <span class="text-dark" style="font-size: large; font-weight: 50px;"> more...</span>
-                  </p>
-                </div>
-              </li>
-            </ul>
-            <div class="w3banner-content-btns d-flex justify-content-center align-items-center">
-              <a href="{% url 'services' %}" class="btn btn-style btn-primary mt-lg-5 mt-4 me-2">Read More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+ 
   <!-- IMPORTANT CSS -->
   <style>
     .custom-img-wrapper {
@@ -1153,9 +1091,8 @@
       }
     </style>
     <!-- IMPORTANT CSS  END-->
-    <!-- PRELOADER (CSS-only) -->
+  <!-- PRELOADER STYLES -->
 <style>
-  /* Fullscreen preloader */
   #preloader {
     position: fixed;
     top: 0;
@@ -1167,9 +1104,9 @@
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    animation: fadeOut 2s ease-out 1s forwards;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     flex-direction: column;
+    animation: fadeOut 2s ease-out 3s forwards; /* fade out after 3s */
   }
 
   .spinner {
@@ -1213,10 +1150,12 @@
   }
 </style>
 
+<!-- PRELOADER HTML -->
 <div id="preloader">
   <div class="spinner"></div>
   <div class="loader-text">Thombys Place</div>
 </div>
+
 
     <!-- FAQ STYLE -->
     <style>

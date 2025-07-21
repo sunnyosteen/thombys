@@ -570,6 +570,7 @@
   }
 </style>
 <!-- Mobile Receipt View -->
+<!-- Mobile Receipt View -->
 <div class="receipt-container d-md-none" id="receiptView" style="max-width: 420px; margin: auto;">
   <div id="bookingCarousel" class="carousel slide" data-bs-interval="false">
     <div class="carousel-inner">
@@ -589,6 +590,12 @@
               <span class="text-success fw-bold">Approved</span>
             {% elif booking.status == 'declined' %}
               <span class="text-danger fw-bold">Declined</span>
+            {% elif booking.status == 'expired' %}
+              <span class="text-secondary fw-bold">Expired</span>
+            {% elif booking.status == 'cancelled' %}
+              <span class="text-muted fw-bold">Cancelled</span>
+            {% else %}
+              <span>{{ booking.status }}</span>
             {% endif %}
           </p>
           <div class="d-flex justify-content-center gap-2 mt-2">
@@ -650,9 +657,11 @@
       </div>
       <div class="modal-body watermark">
         <p><strong>Booking No:</strong> #{{ booking.id|stringformat:"03d" }}</p>
+        <p><strong>Booking Code:</strong> {{ booking.booking_code }}</p>
         <p><strong>Room/Hall:</strong> {{ booking.space.name }}</p>
         <p><strong>Check In:</strong> {{ booking.check_in }}</p>
         <p><strong>Check Out:</strong> {{ booking.check_out }}</p>
+        <p><strong>Days:</strong> {{ booking.days }}</p>
         <p><strong>Total:</strong> ₦{{ booking.amount }}</p>
         <p><strong>Status:</strong> 
           {% if booking.status == 'pending' %}
@@ -661,11 +670,21 @@
             <span class="text-success fw-bold">Approved</span>
           {% elif booking.status == 'declined' %}
             <span class="text-danger fw-bold">Declined</span>
+          {% elif booking.status == 'expired' %}
+            <span class="text-secondary fw-bold">Expired</span>
+          {% elif booking.status == 'cancelled' %}
+            <span class="text-muted fw-bold">Cancelled</span>
+          {% else %}
+            <span>{{ booking.status }}</span>
           {% endif %}
         </p>
+        {% if booking.qr_code %}
+          <p><strong>QR Code:</strong></p>
+          <img src="{{ booking.qr_code.url }}" alt="QR Code for booking {{ booking.booking_code }}" style="max-width: 150px;">
+        {% endif %}
       </div>
       <div class="modal-footer">
-        <button class="btn btn-outline-primary" onclick="printModal()">Print</button>
+        <button class="btn btn-outline-primary" onclick="printModal({{ forloop.counter }})">Print</button>
         <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -693,19 +712,23 @@
     bookingText.textContent = `Booking ${bookingNumber}`;
   });
 
-  function printModal() {
-    const activeModal = document.querySelector('.modal.show .modal-content');
-    if (!activeModal) return;
+  function printModal(counter) {
+    const modalContent = document.getElementById(`printableReceipt${counter}`);
+    if (!modalContent) return;
+
     const printWindow = window.open('', '', 'height=600,width=800');
     printWindow.document.write('<html><head><title>Booking Receipt</title>');
     printWindow.document.write('<style>body{font-family:sans-serif;padding:20px;} .watermark{opacity:0.9;}</style>');
-    printWindow.document.write('</head><body >');
-    printWindow.document.write(activeModal.innerHTML);
+    printWindow.document.write('</head><body>');
+    printWindow.document.write(modalContent.innerHTML);
     printWindow.document.write('</body></html>');
     printWindow.document.close();
+    printWindow.focus();
     printWindow.print();
+    printWindow.close();
   }
 </script>
+
 
     
 
